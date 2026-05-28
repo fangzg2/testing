@@ -13,35 +13,26 @@
             --rose: #c97b84;
             --gold: #d4a574;
             --lavender: #b8a9c9;
+            --sage: #9aab8e;
+            --water: #7ea8b8;
             --safe-top: env(safe-area-inset-top, 0px);
             --safe-bottom: env(safe-area-inset-bottom, 0px);
             --safe-left: env(safe-area-inset-left, 0px);
             --safe-right: env(safe-area-inset-right, 0px);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html, body {
-            width: 100%; height: 100%;
-            overflow: hidden;
+            width: 100%; height: 100%; overflow: hidden;
             font-family: 'Songti SC', 'STSong', 'Noto Serif SC', 'SimSun', serif;
             background: #0a0a0a; color: #fff;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: pan-y;
+            -webkit-tap-highlight-color: transparent; touch-action: pan-y;
         }
 
-        /* ========== CANVAS ========== */
-        #particleCanvas {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none; z-index: 100;
-        }
+        #particleCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
 
-        /* ========== TOUCH HEART ========== */
         .touch-heart {
             position: fixed; pointer-events: none; z-index: 9999;
-            font-size: 20px;
-            animation: heartBurst 1.4s ease-out forwards;
+            font-size: 20px; animation: heartBurst 1.4s ease-out forwards;
         }
         @keyframes heartBurst {
             0% { opacity: 0.8; transform: scale(0) translateY(0); }
@@ -49,41 +40,28 @@
             100% { opacity: 0; transform: scale(0.3) translateY(-100px); }
         }
 
-        /* ========== SLIDESHOW ========== */
-        .slideshow {
-            width: 100%; height: 100%;
-            position: relative; overflow: hidden;
-        }
-
+        .slideshow { width: 100%; height: 100%; position: relative; overflow: hidden; }
         .slide {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; align-items: center; justify-content: center;
             transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.8s ease;
             will-change: transform, opacity;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+            overflow-y: auto; -webkit-overflow-scrolling: touch;
         }
-
         .slide.active { transform: translateY(0); opacity: 1; z-index: 2; }
         .slide.above   { transform: translateY(-100%); opacity: 0; z-index: 1; }
         .slide.below   { transform: translateY(100%); opacity: 0; z-index: 1; }
 
         .slide-inner {
-            width: 100%;
-            max-width: 560px;
+            width: 100%; max-width: 560px;
             padding: calc(60px + var(--safe-top)) 28px calc(90px + var(--safe-bottom));
-            text-align: center;
-            position: relative; z-index: 10;
+            text-align: center; position: relative; z-index: 10;
         }
 
-        /* ========== SLIDE 0: OPENING ========== */
-        #slide-0 {
-            background: linear-gradient(180deg, #0a0a0a 0%, #0d0a12 40%, #100a18 70%, #0a0a0a 100%);
-        }
+        /* ===== OPENING ===== */
+        #slide-0 { background: linear-gradient(180deg, #0a0a0a 0%, #0d0a12 40%, #100a18 70%, #0a0a0a 100%); }
         .opening-glow {
-            position: absolute; top: 45%; left: 50%;
-            transform: translate(-50%, -50%);
+            position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);
             width: 60vw; height: 60vw; max-width: 350px; max-height: 350px;
             background: radial-gradient(circle, rgba(200,123,132,0.15) 0%, rgba(184,169,201,0.08) 40%, transparent 70%);
             animation: openGlow 6s ease-in-out infinite;
@@ -92,80 +70,39 @@
             0%, 100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
             50% { opacity: 1; transform: translate(-50%,-50%) scale(1.15); }
         }
-        .opening-line {
-            font-size: clamp(0.9rem, 3.5vw, 1.1rem);
-            color: var(--lavender);
-            letter-spacing: 8px;
-            margin-bottom: 40px;
-            opacity: 0.7;
-        }
+        .opening-line { font-size: clamp(0.9rem, 3.5vw, 1.1rem); color: var(--lavender); letter-spacing: 8px; margin-bottom: 40px; opacity: 0.7; }
         .opening-title {
-            font-size: clamp(2rem, 8vw, 3.2rem);
-            font-weight: 400;
-            line-height: 1.5;
-            margin-bottom: 30px;
+            font-size: clamp(2rem, 8vw, 3.2rem); font-weight: 400; line-height: 1.5; margin-bottom: 30px;
             background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(232,160,191,0.6));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .opening-moon {
-            font-size: 60px;
-            filter: drop-shadow(0 0 40px rgba(212,165,116,0.4));
-            animation: moonFloat 5s ease-in-out infinite;
-            display: inline-block;
-        }
-        @keyframes moonFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
+        .opening-moon { font-size: 60px; filter: drop-shadow(0 0 40px rgba(212,165,116,0.4)); animation: moonFloat 5s ease-in-out infinite; display: inline-block; }
+        @keyframes moonFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
         .scroll-hint {
-            position: absolute; bottom: calc(30px + var(--safe-bottom));
-            left: 50%; transform: translateX(-50%);
-            opacity: 0.35; font-size: 0.8rem;
-            letter-spacing: 3px;
-            animation: hintBounce 3s infinite;
+            position: absolute; bottom: calc(30px + var(--safe-bottom)); left: 50%; transform: translateX(-50%);
+            opacity: 0.35; font-size: 0.8rem; letter-spacing: 3px; animation: hintBounce 3s infinite;
             font-family: -apple-system, 'PingFang SC', sans-serif;
         }
-        @keyframes hintBounce {
-            0%,100%{ transform: translateX(-50%) translateY(0); }
-            50%{ transform: translateX(-50%) translateY(6px); }
-        }
+        @keyframes hintBounce { 0%,100%{ transform: translateX(-50%) translateY(0); } 50%{ transform: translateX(-50%) translateY(6px); } }
 
-        /* ========== SLIDE 1: FATE ========== */
-        #slide-1 {
-            background: linear-gradient(180deg, #0a0a0a, #0d0a14, #0a0a0a);
-        }
+        /* ===== COMMON ===== */
         .section-label {
-            font-size: 0.8rem;
-            color: var(--gold);
-            letter-spacing: 6px;
-            margin-bottom: 20px;
-            opacity: 0.6;
+            font-size: 0.8rem; color: var(--gold); letter-spacing: 6px; margin-bottom: 20px; opacity: 0.6;
             font-family: -apple-system, 'PingFang SC', sans-serif;
         }
-        .section-title {
-            font-size: clamp(1.6rem, 6vw, 2.4rem);
-            font-weight: 400;
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
-        .section-sub {
-            font-size: 0.95rem; opacity: 0.5; margin-bottom: 30px;
-            font-family: -apple-system, 'PingFang SC', sans-serif;
-        }
+        .section-title { font-size: clamp(1.6rem, 6vw, 2.4rem); font-weight: 400; margin-bottom: 12px; line-height: 1.5; }
+        .section-sub { font-size: 0.95rem; opacity: 0.5; margin-bottom: 30px; font-family: -apple-system, 'PingFang SC', sans-serif; }
+
         .poem-card {
-            background: rgba(255,255,255,0.03);
-            border-radius: 20px; padding: 24px;
-            border: 1px solid rgba(255,255,255,0.06);
-            margin-bottom: 16px;
-            text-align: left;
-            line-height: 2.2;
-            font-size: 1rem;
-            opacity: 0.85;
+            background: rgba(255,255,255,0.03); border-radius: 20px; padding: 24px;
+            border: 1px solid rgba(255,255,255,0.06); margin-bottom: 16px;
+            text-align: left; line-height: 2.2; font-size: 1rem; opacity: 0.85;
         }
-        .poem-card .highlight {
-            color: var(--rose);
-        }
+        .poem-card .hl { color: var(--rose); }
+        .poem-card .hl-water { color: var(--water); }
+        .poem-card .hl-sage { color: var(--sage); }
+        .poem-card .hl-gold { color: var(--gold); }
+
         .fate-badge {
             display: inline-block; padding: 10px 24px;
             background: rgba(200,123,132,0.1); border-radius: 30px;
@@ -174,191 +111,111 @@
             font-family: -apple-system, 'PingFang SC', sans-serif;
         }
 
-        /* ========== SLIDE 2: STORY ========== */
-        #slide-2 {
-            background: linear-gradient(180deg, #0a0a0a, #0a0d14, #0a0a0a);
-        }
-        .timeline { max-width: 480px; margin: 0 auto; position: relative; padding-left: 28px; }
-        .timeline::before {
-            content: ''; position: absolute; left: 8px; top: 0;
-            width: 1px; height: 100%;
-            background: linear-gradient(180deg, transparent, var(--rose), var(--lavender), transparent);
-        }
-        .tl-item {
-            margin-bottom: 24px; position: relative;
-            opacity: 0; transform: translateY(24px);
-            transition: all 0.6s ease;
-        }
-        .tl-item.visible { opacity: 1; transform: translateY(0); }
-        .tl-item::before {
-            content: ''; position: absolute; left: -23px; top: 10px;
-            width: 8px; height: 8px; background: var(--rose);
-            border-radius: 50%; box-shadow: 0 0 10px rgba(201,123,132,0.5);
-        }
-        .tl-date {
-            color: var(--gold); font-size: 0.8rem; margin-bottom: 6px;
-            font-family: -apple-system, 'PingFang SC', sans-serif;
-        }
-        .tl-card {
-            background: rgba(255,255,255,0.03); border-radius: 14px;
-            padding: 18px; border: 1px solid rgba(255,255,255,0.06);
-        }
-        .tl-text { font-size: 0.95rem; line-height: 1.9; opacity: 0.85; }
+        /* ===== SLIDE BACKGROUNDS ===== */
+        #slide-1 { background: linear-gradient(180deg, #0a0a0a, #0d0a14, #0a0a0a); }
+        #slide-2 { background: linear-gradient(180deg, #0a0a0a, #0a0d10, #0a0a0a); }
+        #slide-3 { background: linear-gradient(180deg, #0a0a0a, #100a0d, #0a0a0a); }
+        #slide-4 { background: linear-gradient(180deg, #0a0a0a, #0a0d12, #0a0a0a); }
+        #slide-5 { background: linear-gradient(180deg, #0a0a0a, #0d0a10, #0a0a0a); }
+        #slide-6 { background: linear-gradient(180deg, #0a0a0a, #0a0a0d, #0a0a0a); }
+        #slide-7 { background: linear-gradient(180deg, #0a0a0a, #100a10, #0a0a0a); }
 
-        /* ========== SLIDE 3: YUZHANG ROAD ========== */
-        #slide-3 {
-            background: linear-gradient(180deg, #0a0a0a, #100a0d, #0a0a0a);
-        }
+        /* ===== YUZHANG ===== */
         .yuzhang-quote {
-            font-size: clamp(1.2rem, 5vw, 1.6rem);
-            line-height: 2.2;
-            padding: 30px 0;
-            position: relative;
+            font-size: clamp(1.2rem, 5vw, 1.6rem); line-height: 2.2; padding: 30px 0; position: relative;
         }
         .yuzhang-quote::before, .yuzhang-quote::after {
-            content: ''; position: absolute;
-            width: 40px; height: 1px;
-            background: var(--rose);
-            opacity: 0.4;
+            content: ''; position: absolute; width: 40px; height: 1px;
+            background: var(--rose); opacity: 0.4;
         }
         .yuzhang-quote::before { top: 0; left: 50%; transform: translateX(-50%); }
         .yuzhang-quote::after { bottom: 0; left: 50%; transform: translateX(-50%); }
-        .yuzhang-emoji {
-            font-size: 48px; display: block; margin-bottom: 20px;
-            filter: grayscale(30%);
-        }
+        .yuzhang-emoji { font-size: 48px; display: block; margin-bottom: 20px; filter: grayscale(30%); }
         .yuzhang-desc {
             font-size: 0.9rem; opacity: 0.5; margin-top: 20px;
-            font-family: -apple-system, 'PingFang SC', sans-serif;
-            line-height: 1.8;
+            font-family: -apple-system, 'PingFang SC', sans-serif; line-height: 1.8;
         }
 
-        /* ========== SLIDE 4: REASONS ========== */
-        #slide-4 {
-            background: linear-gradient(180deg, #0a0a0a, #0a0d10, #0a0a0a);
+        /* ===== SCENE CARDS ===== */
+        .scene-card {
+            background: rgba(255,255,255,0.025); border-radius: 20px; padding: 28px 22px;
+            border: 1px solid rgba(255,255,255,0.05); margin-bottom: 18px;
+            text-align: left; line-height: 2; font-size: 0.95rem; opacity: 0.85;
         }
-        .reason-list {
-            text-align: left;
-            max-width: 420px;
-            margin: 0 auto;
+        .scene-card .scene-title {
+            font-size: 0.75rem; letter-spacing: 4px; opacity: 0.4; margin-bottom: 10px;
+            font-family: -apple-system, 'PingFang SC', sans-serif;
         }
+
+        /* ===== REASONS ===== */
+        .reason-list { text-align: left; max-width: 420px; margin: 0 auto; }
         .reason-item {
             display: flex; align-items: flex-start; gap: 14px;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            opacity: 0; transform: translateX(-20px);
-            transition: all 0.5s ease;
+            padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+            opacity: 0; transform: translateX(-20px); transition: all 0.5s ease;
         }
         .reason-item.visible { opacity: 1; transform: translateX(0); }
-        .reason-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--rose); flex-shrink: 0;
-            margin-top: 8px;
-        }
-        .reason-text {
-            font-size: 1rem; line-height: 1.8; opacity: 0.8;
-        }
+        .reason-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rose); flex-shrink: 0; margin-top: 8px; }
+        .reason-text { font-size: 1rem; line-height: 1.8; opacity: 0.8; }
 
-        /* ========== SLIDE 5: PROMISE ========== */
-        #slide-5 {
-            background: linear-gradient(180deg, #0a0a0a, #0d0a10, #0a0a0a);
-        }
+        /* ===== PROMISE ===== */
         .promise-item {
             display: flex; align-items: center; gap: 12px;
             padding: 14px 20px; margin-bottom: 10px;
             background: rgba(255,255,255,0.02); border-radius: 12px;
             font-size: 0.95rem; line-height: 1.7;
-            opacity: 0; transform: translateY(16px);
-            transition: all 0.5s ease;
+            opacity: 0; transform: translateY(16px); transition: all 0.5s ease;
         }
         .promise-item.visible { opacity: 0.85; transform: translateY(0); }
 
-        /* ========== SLIDE 6: LETTER ========== */
-        #slide-6 {
-            background: linear-gradient(180deg, #0a0a0a, #100a10, #0a0a0a);
-        }
+        /* ===== LETTER ===== */
         .letter-box {
-            background: rgba(201,123,132,0.04);
-            border-radius: 24px; padding: 36px 24px;
-            border: 1px solid rgba(201,123,132,0.12);
-            margin-top: 16px;
+            background: rgba(201,123,132,0.04); border-radius: 24px; padding: 36px 24px;
+            border: 1px solid rgba(201,123,132,0.12); margin-top: 16px;
         }
-        .letter-title {
-            font-size: clamp(1.4rem, 5vw, 2rem);
-            font-weight: 400;
-            margin-bottom: 24px;
-            color: var(--rose);
-            opacity: 0.9;
-        }
+        .letter-title { font-size: clamp(1.4rem, 5vw, 2rem); font-weight: 400; margin-bottom: 24px; color: var(--rose); opacity: 0.9; }
         #letterText {
-            font-size: 0.95rem; line-height: 2.2;
-            opacity: 0.85; min-height: 180px;
-            text-align: left; white-space: pre-wrap;
+            font-size: 0.95rem; line-height: 2.2; opacity: 0.85;
+            min-height: 180px; text-align: left; white-space: pre-wrap;
         }
-        .letter-sign {
-            text-align: right;
-            margin-top: 24px;
-            font-size: 1rem;
-            color: var(--rose);
-            opacity: 0.7;
-        }
+        .letter-sign { text-align: right; margin-top: 24px; font-size: 1rem; color: var(--rose); opacity: 0.7; }
 
-        /* ========== BOTTOM NAV ========== */
+        /* ===== NAV ===== */
         .bottom-nav {
             position: fixed; bottom: 0; left: 0; right: 0;
             padding: 8px 0 calc(8px + var(--safe-bottom));
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(20px);
-            display: flex; justify-content: center; align-items: center;
-            gap: 8px;
-            z-index: 200;
-            border-top: 1px solid rgba(255,255,255,0.04);
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(20px);
+            display: flex; justify-content: center; align-items: center; gap: 6px;
+            z-index: 200; border-top: 1px solid rgba(255,255,255,0.04);
         }
-        .nav-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: rgba(255,255,255,0.15);
-            transition: all 0.4s;
-        }
-        .nav-dot.active {
-            background: var(--rose); width: 20px; border-radius: 3px;
-            box-shadow: 0 0 8px rgba(201,123,132,0.4);
-        }
+        .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.15); transition: all 0.4s; }
+        .nav-dot.active { background: var(--rose); width: 20px; border-radius: 3px; box-shadow: 0 0 8px rgba(201,123,132,0.4); }
         .nav-share {
-            color: var(--rose); font-size: 0.7rem;
-            padding: 5px 12px; border-radius: 16px;
-            background: rgba(201,123,132,0.08);
-            border: 1px solid rgba(201,123,132,0.15);
-            cursor: pointer; transition: all 0.3s;
-            margin-left: 8px;
+            color: var(--rose); font-size: 0.7rem; padding: 5px 12px; border-radius: 16px;
+            background: rgba(201,123,132,0.08); border: 1px solid rgba(201,123,132,0.15);
+            cursor: pointer; transition: all 0.3s; margin-left: 8px;
             font-family: -apple-system, 'PingFang SC', sans-serif;
         }
         .nav-share:active { transform: scale(0.9); }
 
-        /* ========== TOAST ========== */
         .toast {
-            position: fixed; top: calc(20px + var(--safe-top));
-            left: 50%; transform: translateX(-50%) translateY(-80px);
+            position: fixed; top: calc(20px + var(--safe-top)); left: 50%;
+            transform: translateX(-50%) translateY(-80px);
             background: rgba(201,123,132,0.85); color: #fff;
-            padding: 10px 22px; border-radius: 24px;
-            font-size: 0.85rem; z-index: 9999;
+            padding: 10px 22px; border-radius: 24px; font-size: 0.85rem; z-index: 9999;
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             font-family: -apple-system, 'PingFang SC', sans-serif;
         }
         .toast.show { transform: translateX(-50%) translateY(0); }
 
-        /* ========== PAGE COUNTER ========== */
         .page-counter {
-            position: fixed; top: calc(16px + var(--safe-top));
-            right: calc(16px + var(--safe-right));
+            position: fixed; top: calc(16px + var(--safe-top)); right: calc(16px + var(--safe-right));
             font-size: 0.7rem; opacity: 0.25; z-index: 200;
             font-family: -apple-system, 'PingFang SC', sans-serif;
         }
 
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
     </style>
 </head>
@@ -366,11 +223,11 @@
 
 <canvas id="particleCanvas"></canvas>
 <div class="toast" id="toast"></div>
-<div class="page-counter" id="pageCounter">1 / 7</div>
+<div class="page-counter" id="pageCounter">1 / 8</div>
 
 <div class="slideshow" id="slideshow">
 
-    <!-- SLIDE 0: 开篇 -->
+    <!-- 0: 开篇 -->
     <div class="slide active" id="slide-0">
         <div class="opening-glow"></div>
         <div class="slide-inner">
@@ -381,7 +238,7 @@
         <div class="scroll-hint">轻触上滑</div>
     </div>
 
-    <!-- SLIDE 1: 缘起 -->
+    <!-- 1: 缘起 -->
     <div class="slide below" id="slide-1">
         <div class="slide-inner">
             <div class="section-label">缘 起</div>
@@ -392,19 +249,19 @@
                 只是觉得时候到了<br><br>
                 后来我在上海落脚<br>
                 生活像一杯温开水<br>
-                <span class="highlight">直到遇见你</span>
+                <span class="hl">直到遇见你</span>
             </div>
             <div class="fate-badge">一月 · 线上相识</div>
             <div class="poem-card">
                 起初只是简单的问候<br>
                 有一搭没一搭<br>
                 谁也没有多想<br><br>
-                <span class="highlight">但缘分这种东西<br>从来不需要预谋</span>
+                <span class="hl">但缘分这种东西<br>从来不需要预谋</span>
             </div>
         </div>
     </div>
 
-    <!-- SLIDE 2: 豫章路 -->
+    <!-- 2: 豫章路 -->
     <div class="slide below" id="slide-2">
         <div class="slide-inner">
             <div class="section-label">心 倾</div>
@@ -423,59 +280,95 @@
         </div>
     </div>
 
-    <!-- SLIDE 3: 在一起 -->
+    <!-- 3: 在一起 -->
     <div class="slide below" id="slide-3">
         <div class="slide-inner">
             <div class="section-label">相 许</div>
             <h2 class="section-title">五月八日</h2>
             <div class="poem-card" style="border-color: rgba(201,123,132,0.15);">
-                你从郑州飞来上海<br>
+                你从郑州坐高铁来上海<br>
                 跨越了一千公里<br><br>
                 那天我们决定<br>
-                <span class="highlight">在一起</span><br><br>
+                <span class="hl">在一起</span><br><br>
                 二十天不到<br>
                 我们来回见了三次面<br>
                 你来上海一次<br>
                 我去郑州两次<br><br>
                 上海 · 郑州 · 南昌<br>
-                <span class="highlight">三座城市，串起了我们的故事</span>
+                <span class="hl">三座城市，串起了我们的故事</span>
             </div>
             <div class="fate-badge">💕 20天 · 3次相见</div>
         </div>
     </div>
 
-    <!-- SLIDE 4: 喜欢的理由 -->
+    <!-- 4: 上海·宁静 -->
     <div class="slide below" id="slide-4">
+        <div class="slide-inner">
+            <div class="section-label">印 记</div>
+            <h2 class="section-title">那些宁静的时刻</h2>
+
+            <div class="scene-card">
+                <div class="scene-title">世 博 公 园</div>
+                你居然能认出好多花<br>
+                我真的很惊讶<br><br>
+                我们坐在河边的台阶上<br>
+                手托着脸<br>
+                看着面前的小河<br>
+                两边的树<br>
+                远远露出一个上海中心<br><br>
+                <span class="hl-water">旁边有鸟叫<br>很宁静</span>
+            </div>
+
+            <div class="scene-card">
+                <div class="scene-title">黄 浦 江 边 · 夜</div>
+                她穿着我的外套<br>
+                我们手拉手走过一大段居民区<br>
+                走到了黄浦江边<br><br>
+                找了一张长椅<br>
+                她躺下来<br>
+                头枕在我的腿上<br><br>
+                <span class="hl-water">江水哗啦啦的<br>也很宁静</span>
+            </div>
+
+            <div class="poem-card" style="text-align:center; border-color: rgba(126,168,184,0.15);">
+                后来我发现<br>
+                <span class="hl-water">印象最深的时刻<br>都是最宁静的时候</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5: 喜欢的理由 -->
+    <div class="slide below" id="slide-5">
         <div class="slide-inner">
             <div class="section-label">倾 心</div>
             <h2 class="section-title">因为是你</h2>
             <div class="reason-list">
                 <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你把我的随口一提，当成了郑重其事</div></div>
-                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你愿意飞越千里，只为见我一面</div></div>
-                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你让我相信，缘分真的存在</div></div>
-                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">和你在一起的时候，时间过得特别快</div></div>
-                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你的笑，像春天的风</div></div>
-                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你的温柔，是有力量的那种</div></div>
+                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你愿意跨越千里，只为见我一面</div></div>
+                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你认识好多好多花，让我惊讶又欢喜</div></div>
+                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你很有爱心，会帮助流浪的小动物</div></div>
+                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你有一只可爱的布偶猫，叫 Timi</div></div>
+                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">和你在一起的时候，世界变得很宁静</div></div>
                 <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">从美国到中国，绕了半个地球，原来是为了遇见你</div></div>
             </div>
         </div>
     </div>
 
-    <!-- SLIDE 5: 承诺 -->
-    <div class="slide below" id="slide-5">
+    <!-- 6: 承诺 -->
+    <div class="slide below" id="slide-6">
         <div class="slide-inner">
             <div class="section-label">期 许</div>
             <h2 class="section-title">我想对你说</h2>
             <div class="promise-item"><span>不管上海还是郑州，我都会主动去找你</span></div>
             <div class="promise-item"><span>想听你讲每一天发生的事，好的坏的都想听</span></div>
             <div class="promise-item"><span>等我们准备好了，在一个城市好好生活</span></div>
-            <div class="promise-item"><span>珍惜这段缘分，不辜负你飞来找我的勇气</span></div>
+            <div class="promise-item"><span>珍惜这段缘分，不辜负你千里来找我的勇气</span></div>
             <div class="promise-item"><span>以后的日子，我想一直有你</span></div>
         </div>
     </div>
 
-    <!-- SLIDE 6: 情书 -->
-    <div class="slide below" id="slide-6">
+    <!-- 7: 情书 -->
+    <div class="slide below" id="slide-7">
         <div class="slide-inner">
             <div class="section-label">此 心</div>
             <div class="letter-box">
@@ -488,7 +381,7 @@
 
 </div>
 
-<!-- BOTTOM NAV -->
+<!-- NAV -->
 <div class="bottom-nav">
     <div class="nav-dot active" data-slide="0"></div>
     <div class="nav-dot" data-slide="1"></div>
@@ -497,89 +390,58 @@
     <div class="nav-dot" data-slide="4"></div>
     <div class="nav-dot" data-slide="5"></div>
     <div class="nav-dot" data-slide="6"></div>
+    <div class="nav-dot" data-slide="7"></div>
     <div class="nav-share" onclick="sharePage()">分享</div>
 </div>
 
 <script>
 (function() {
     'use strict';
+    var currentSlide = 0, totalSlides = 8, touchStartY = 0, touchStartTime = 0, isAnimating = false, slideAnimated = {};
 
-    var currentSlide = 0;
-    var totalSlides = 7;
-    var touchStartY = 0;
-    var touchStartTime = 0;
-    var isAnimating = false;
-    var slideAnimated = {};
-
-    // ========== PARTICLES (subtle, warm) ==========
-    var canvas = document.getElementById('particleCanvas');
-    var ctx = canvas.getContext('2d');
-    var particles = [];
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    // ===== PARTICLES =====
+    var canvas = document.getElementById('particleCanvas'), ctx = canvas.getContext('2d'), particles = [];
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resizeCanvas(); window.addEventListener('resize', resizeCanvas);
 
     function Particle() { this.reset(); }
     Particle.prototype.reset = function() {
         this.x = Math.random() * canvas.width;
         this.y = -10 - Math.random() * 80;
         this.size = 3 + Math.random() * 8;
-        this.speedY = 0.2 + Math.random() * 0.6;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.opacity = 0.08 + Math.random() * 0.15;
+        this.speedY = 0.15 + Math.random() * 0.45;
+        this.speedX = (Math.random() - 0.5) * 0.25;
+        this.opacity = 0.06 + Math.random() * 0.12;
         this.rotation = Math.random() * Math.PI * 2;
-        this.rotSpeed = (Math.random() - 0.5) * 0.01;
-        // warm tones: rose, gold, lavender
-        var colors = ['201,123,132','212,165,116','184,169,201'];
+        this.rotSpeed = (Math.random() - 0.5) * 0.008;
+        var colors = ['201,123,132','212,165,116','184,169,201','126,168,184'];
         this.color = colors[Math.floor(Math.random() * colors.length)];
     };
     Particle.prototype.update = function() {
         this.y += this.speedY;
-        this.x += this.speedX + Math.sin(this.y * 0.008) * 0.2;
+        this.x += this.speedX + Math.sin(this.y * 0.008) * 0.15;
         this.rotation += this.rotSpeed;
         if (this.y > canvas.height + 10) this.reset();
     };
     Particle.prototype.draw = function() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
-        ctx.globalAlpha = this.opacity;
-        ctx.fillStyle = 'rgb(' + this.color + ')';
+        ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation);
+        ctx.globalAlpha = this.opacity; ctx.fillStyle = 'rgb(' + this.color + ')';
         var s = this.size;
         ctx.beginPath();
         ctx.moveTo(0, -s * 0.3);
         ctx.bezierCurveTo(s * 0.5, -s, s, -s * 0.3, 0, s * 0.5);
         ctx.bezierCurveTo(-s, -s * 0.3, -s * 0.5, -s, 0, -s * 0.3);
-        ctx.fill();
-        ctx.restore();
+        ctx.fill(); ctx.restore();
     };
-
-    for (var i = 0; i < 18; i++) {
-        var p = new Particle();
-        p.y = Math.random() * canvas.height;
-        particles.push(p);
-    }
-
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (var i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
-        }
-        requestAnimationFrame(animateParticles);
-    }
+    for (var i = 0; i < 18; i++) { var p = new Particle(); p.y = Math.random() * canvas.height; particles.push(p); }
+    function animateParticles() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (var i = 0; i < particles.length; i++) { particles[i].update(); particles[i].draw(); } requestAnimationFrame(animateParticles); }
     animateParticles();
 
-    // ========== TOUCH BURST ==========
-    var emojis = ['✨','🌸','💫','🌙','💕'];
+    // ===== TOUCH BURST =====
+    var emojis = ['✨','🌸','💫','🌙','🍃'];
     function createBurstAt(x, y) {
         for (var i = 0; i < 4; i++) {
-            var el = document.createElement('div');
-            el.className = 'touch-heart';
+            var el = document.createElement('div'); el.className = 'touch-heart';
             el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
             el.style.left = (x - 10 + (Math.random()-0.5)*40) + 'px';
             el.style.top = (y - 10 + (Math.random()-0.5)*30) + 'px';
@@ -588,16 +450,10 @@
             setTimeout(function(e){ e.remove(); }.bind(null,el), 1500);
         }
     }
-    document.addEventListener('touchstart', function(e) {
-        var t = e.touches[0];
-        createBurstAt(t.clientX, t.clientY);
-    }, {passive: true});
+    document.addEventListener('touchstart', function(e) { var t = e.touches[0]; createBurstAt(t.clientX, t.clientY); }, {passive: true});
 
-    // ========== SLIDE NAV ==========
-    var slides = document.querySelectorAll('.slide');
-    var dots = document.querySelectorAll('.nav-dot');
-    var counter = document.getElementById('pageCounter');
-
+    // ===== SLIDE NAV =====
+    var slides = document.querySelectorAll('.slide'), dots = document.querySelectorAll('.nav-dot'), counter = document.getElementById('pageCounter');
     function goToSlide(idx) {
         if (idx < 0 || idx >= totalSlides || isAnimating) return;
         isAnimating = true;
@@ -613,110 +469,66 @@
         triggerAnimations(idx);
         setTimeout(function(){ isAnimating = false; }, 850);
     }
-
-    document.addEventListener('touchstart', function(e) {
-        touchStartY = e.touches[0].clientY;
-        touchStartTime = Date.now();
-    }, {passive: true});
+    document.addEventListener('touchstart', function(e) { touchStartY = e.touches[0].clientY; touchStartTime = Date.now(); }, {passive: true});
     document.addEventListener('touchend', function(e) {
-        var dy = touchStartY - e.changedTouches[0].clientY;
-        var dt = Date.now() - touchStartTime;
+        var dy = touchStartY - e.changedTouches[0].clientY, dt = Date.now() - touchStartTime;
         if (Math.abs(dy) > 50 && dt < 500) goToSlide(currentSlide + (dy > 0 ? 1 : -1));
     }, {passive: true});
-    document.addEventListener('wheel', function(e) {
-        e.preventDefault();
-        if (Math.abs(e.deltaY) > 30) goToSlide(currentSlide + (e.deltaY > 0 ? 1 : -1));
-    }, {passive: false});
+    document.addEventListener('wheel', function(e) { e.preventDefault(); if (Math.abs(e.deltaY) > 30) goToSlide(currentSlide + (e.deltaY > 0 ? 1 : -1)); }, {passive: false});
     document.addEventListener('keydown', function(e) {
         if (e.key === 'ArrowDown' || e.key === ' ') goToSlide(currentSlide + 1);
         if (e.key === 'ArrowUp') goToSlide(currentSlide - 1);
     });
-    dots.forEach(function(dot) {
-        dot.addEventListener('click', function() { goToSlide(parseInt(this.dataset.slide)); });
-    });
+    dots.forEach(function(dot) { dot.addEventListener('click', function() { goToSlide(parseInt(this.dataset.slide)); }); });
 
-    // ========== TYPEWRITER ==========
+    // ===== TYPEWRITER =====
     function typeWriter(el, text, speed) {
-        var i = 0;
-        el.textContent = '';
+        var i = 0; el.textContent = '';
         function tick() {
-            if (i < text.length) {
-                el.textContent += text.charAt(i);
-                i++;
-                setTimeout(tick, text.charAt(i-1) === '\n' ? speed * 4 : speed);
-            }
+            if (i < text.length) { el.textContent += text.charAt(i); i++; setTimeout(tick, text.charAt(i-1) === '\n' ? speed * 4 : speed); }
         }
         tick();
     }
 
-    // ========== ANIMATIONS PER SLIDE ==========
+    // ===== ANIMATIONS =====
     function triggerAnimations(idx) {
         if (slideAnimated[idx]) return;
-
-        if (idx === 0) {
-            typeWriter(document.getElementById('openTitle'), '世间所有的相遇\n都是久别重逢', 100);
-        }
-
-        if (idx === 4) {
-            var items = document.querySelectorAll('#slide-4 .reason-item');
-            items.forEach(function(item, i){
-                setTimeout(function(){ item.classList.add('visible'); }, i * 200);
-            });
-        }
-
+        if (idx === 0) typeWriter(document.getElementById('openTitle'), '世间所有的相遇\n都是久别重逢', 100);
         if (idx === 5) {
-            var items = document.querySelectorAll('#slide-5 .promise-item');
-            items.forEach(function(item, i){
-                setTimeout(function(){ item.classList.add('visible'); }, i * 180);
-            });
+            var items = document.querySelectorAll('#slide-5 .reason-item');
+            items.forEach(function(item, i){ setTimeout(function(){ item.classList.add('visible'); }, i * 200); });
         }
-
         if (idx === 6) {
-            var el = document.getElementById('letterText');
-            var text = '婷婷，\n\n去年九月回国的时候，\n我不知道命运已经为我安排好了什么。\n\n一月认识你的时候，\n也没想到后来的故事会这么长。\n\n你去了豫章路。\n你飞来上海。\n你让我相信缘分。\n\n二十天，三座城市，三次相见。\n每一次见你，\n都更加确定——\n就是你了。\n\n我不知道以后会怎样，\n但我知道，\n我想一直有你。\n\n不管在上海，在郑州，还是在哪里，\n只要有你在的地方，\n就是我想去的方向。';
-            typeWriter(el, text, 45);
+            var items = document.querySelectorAll('#slide-6 .promise-item');
+            items.forEach(function(item, i){ setTimeout(function(){ item.classList.add('visible'); }, i * 180); });
         }
-
+        if (idx === 7) {
+            var el = document.getElementById('letterText');
+            var text = '婷婷，\n\n我绕了半个地球才明白，\n所有的路，都是通向你的路。\n\n一月认识你的时候，\n我还不知道你会去豫章路。\n\n五月你来上海的时候，\n我也不知道我们会坐在河边的台阶上，\n看远处的上海中心，听鸟叫。\n\n你穿着我的外套，\n头枕在我腿上，\n黄浦江的水哗啦啦响。\n\n那些时刻很宁静，\n却是我印象最深的。\n\n你有一只叫 Timi 的布偶猫，\n你会帮助流浪的小动物，\n你认识好多花。\n\n你是一个很有爱心也很可爱的人。\n\n我不知道以后会怎样，\n但我知道，\n我想一直有你。\n\n不管在上海，在郑州，还是在哪里，\n只要有你在的地方，\n就是我想去的方向。';
+            typeWriter(el, text, 42);
+        }
         slideAnimated[idx] = true;
     }
 
-    // ========== SHARE ==========
+    // ===== SHARE =====
     window.sharePage = function() {
         if (navigator.share) {
-            navigator.share({
-                title: '致那个让我心动的人',
-                text: '世间所有的相遇，都是久别重逢。',
-                url: window.location.href
-            }).catch(function(){});
+            navigator.share({ title: '致那个让我心动的人', text: '世间所有的相遇，都是久别重逢。', url: window.location.href }).catch(function(){});
         } else {
-            var input = document.createElement('input');
-            input.value = window.location.href;
-            document.body.appendChild(input);
-            input.select();
-            document.execCommand('copy');
-            input.remove();
+            var input = document.createElement('input'); input.value = window.location.href;
+            document.body.appendChild(input); input.select(); document.execCommand('copy'); input.remove();
             showToast('链接已复制 📋');
         }
     };
-
-    // ========== TOAST ==========
     function showToast(msg) {
-        var t = document.getElementById('toast');
-        t.textContent = msg;
-        t.classList.add('show');
+        var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
         setTimeout(function(){ t.classList.remove('show'); }, 2500);
     }
 
-    // ========== INIT ==========
+    // ===== INIT =====
     setTimeout(function(){ triggerAnimations(0); }, 800);
-
-    function setVH() {
-        var vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', vh + 'px');
-    }
-    setVH();
-    window.addEventListener('resize', setVH);
-
+    function setVH() { document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px'); }
+    setVH(); window.addEventListener('resize', setVH);
 })();
 </script>
 </body>
