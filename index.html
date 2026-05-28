@@ -6,30 +6,24 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0a0a0a">
-    <title>致那个让我心动的人</title>
+    <title>给婷婷</title>
     <style>
         :root {
-            --pink: #e8a0bf;
             --rose: #c97b84;
             --gold: #d4a574;
-            --lavender: #b8a9c9;
-            --sage: #9aab8e;
             --water: #7ea8b8;
+            --warm: #e8c4a0;
             --safe-top: env(safe-area-inset-top, 0px);
             --safe-bottom: env(safe-area-inset-bottom, 0px);
-            --safe-left: env(safe-area-inset-left, 0px);
-            --safe-right: env(safe-area-inset-right, 0px);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body {
             width: 100%; height: 100%; overflow: hidden;
-            font-family: 'Songti SC', 'STSong', 'Noto Serif SC', 'SimSun', serif;
+            font-family: 'PingFang SC', -apple-system, 'Helvetica Neue', sans-serif;
             background: #0a0a0a; color: #fff;
             -webkit-tap-highlight-color: transparent; touch-action: pan-y;
         }
-
         #particleCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
-
         .touch-heart {
             position: fixed; pointer-events: none; z-index: 9999;
             font-size: 20px; animation: heartBurst 1.4s ease-out forwards;
@@ -39,7 +33,6 @@
             40% { opacity: 0.8; transform: scale(1.2) translateY(-30px); }
             100% { opacity: 0; transform: scale(0.3) translateY(-100px); }
         }
-
         .slideshow { width: 100%; height: 100%; position: relative; overflow: hidden; }
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -51,209 +44,156 @@
         .slide.active { transform: translateY(0); opacity: 1; z-index: 2; }
         .slide.above   { transform: translateY(-100%); opacity: 0; z-index: 1; }
         .slide.below   { transform: translateY(100%); opacity: 0; z-index: 1; }
-
         .slide-inner {
-            width: 100%; max-width: 560px;
-            padding: calc(60px + var(--safe-top)) 28px calc(90px + var(--safe-bottom));
+            width: 100%; max-width: 520px;
+            padding: calc(60px + var(--safe-top)) 24px calc(90px + var(--safe-bottom));
             text-align: center; position: relative; z-index: 10;
         }
 
         /* ===== OPENING ===== */
-        #slide-0 { background: linear-gradient(180deg, #0a0a0a 0%, #0d0a12 40%, #100a18 70%, #0a0a0a 100%); }
+        #slide-0 { background: #0a0a0a; }
         .opening-glow {
-            position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);
-            width: 60vw; height: 60vw; max-width: 350px; max-height: 350px;
-            background: radial-gradient(circle, rgba(200,123,132,0.15) 0%, rgba(184,169,201,0.08) 40%, transparent 70%);
-            animation: openGlow 6s ease-in-out infinite;
+            position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+            width: 70vw; height: 70vw; max-width: 400px; max-height: 400px;
+            background: radial-gradient(circle, rgba(201,123,132,0.12) 0%, transparent 60%);
+            animation: glow 5s ease-in-out infinite;
         }
-        @keyframes openGlow {
+        @keyframes glow {
             0%, 100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
-            50% { opacity: 1; transform: translate(-50%,-50%) scale(1.15); }
+            50% { opacity: 1; transform: translate(-50%,-50%) scale(1.1); }
         }
-        .opening-line { font-size: clamp(0.9rem, 3.5vw, 1.1rem); color: var(--lavender); letter-spacing: 8px; margin-bottom: 40px; opacity: 0.7; }
+        .opening-emoji { font-size: 48px; margin-bottom: 24px; display: inline-block; animation: bob 4s ease-in-out infinite; }
+        @keyframes bob { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
         .opening-title {
-            font-size: clamp(2rem, 8vw, 3.2rem); font-weight: 400; line-height: 1.5; margin-bottom: 30px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(232,160,191,0.6));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            font-size: clamp(1.8rem, 7vw, 2.8rem); font-weight: 600;
+            line-height: 1.4; margin-bottom: 12px;
         }
-        .opening-moon { font-size: 60px; filter: drop-shadow(0 0 40px rgba(212,165,116,0.4)); animation: moonFloat 5s ease-in-out infinite; display: inline-block; }
-        @keyframes moonFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        .opening-sub { font-size: 1rem; opacity: 0.4; margin-bottom: 32px; }
+        .birthday-box {
+            display: inline-block; padding: 16px 28px;
+            background: rgba(232,196,160,0.08); border-radius: 20px;
+            border: 1px solid rgba(232,196,160,0.15);
+        }
+        .birthday-label { font-size: 0.8rem; color: var(--warm); opacity: 0.7; margin-bottom: 8px; }
+        .birthday-count {
+            font-size: 2.5rem; font-weight: 700; color: var(--warm);
+        }
+        .birthday-date { font-size: 0.85rem; opacity: 0.4; margin-top: 4px; }
         .scroll-hint {
-            position: absolute; bottom: calc(30px + var(--safe-bottom)); left: 50%; transform: translateX(-50%);
-            opacity: 0.35; font-size: 0.8rem; letter-spacing: 3px; animation: hintBounce 3s infinite;
-            font-family: -apple-system, 'PingFang SC', sans-serif;
+            position: absolute; bottom: calc(30px + var(--safe-bottom)); left: 50%;
+            transform: translateX(-50%); opacity: 0.3; font-size: 0.8rem;
+            animation: hintB 3s infinite;
         }
-        @keyframes hintBounce { 0%,100%{ transform: translateX(-50%) translateY(0); } 50%{ transform: translateX(-50%) translateY(6px); } }
+        @keyframes hintB { 0%,100%{ transform: translateX(-50%) translateY(0); } 50%{ transform: translateX(-50%) translateY(5px); } }
 
         /* ===== COMMON ===== */
-        .section-label {
-            font-size: 0.8rem; color: var(--gold); letter-spacing: 6px; margin-bottom: 20px; opacity: 0.6;
-            font-family: -apple-system, 'PingFang SC', sans-serif;
+        .s-label {
+            font-size: 0.75rem; color: var(--rose); letter-spacing: 4px;
+            margin-bottom: 16px; opacity: 0.5; text-transform: uppercase;
         }
-        .section-title { font-size: clamp(1.6rem, 6vw, 2.4rem); font-weight: 400; margin-bottom: 12px; line-height: 1.5; }
-        .section-sub { font-size: 0.95rem; opacity: 0.5; margin-bottom: 30px; font-family: -apple-system, 'PingFang SC', sans-serif; }
+        .s-title { font-size: clamp(1.4rem, 5.5vw, 2rem); font-weight: 600; margin-bottom: 24px; line-height: 1.4; }
 
-        .poem-card {
-            background: rgba(255,255,255,0.03); border-radius: 20px; padding: 24px;
-            border: 1px solid rgba(255,255,255,0.06); margin-bottom: 16px;
-            text-align: left; line-height: 2.2; font-size: 1rem; opacity: 0.85;
+        /* ===== CARD ===== */
+        .card {
+            background: rgba(255,255,255,0.03); border-radius: 20px;
+            padding: 24px; border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 14px; text-align: left;
+            line-height: 1.9; font-size: 0.95rem; opacity: 0.85;
         }
-        .poem-card .hl { color: var(--rose); }
-        .poem-card .hl-water { color: var(--water); }
-        .poem-card .hl-sage { color: var(--sage); }
-        .poem-card .hl-gold { color: var(--gold); }
+        .card .hl { color: var(--rose); }
+        .card .hl2 { color: var(--water); }
 
-        .fate-badge {
-            display: inline-block; padding: 10px 24px;
-            background: rgba(200,123,132,0.1); border-radius: 30px;
-            color: var(--rose); font-size: 0.9rem; margin: 12px 0;
-            border: 1px solid rgba(200,123,132,0.2);
-            font-family: -apple-system, 'PingFang SC', sans-serif;
-        }
-
-        /* ===== SLIDE BACKGROUNDS ===== */
-        #slide-1 { background: linear-gradient(180deg, #0a0a0a, #0d0a14, #0a0a0a); }
-        #slide-2 { background: linear-gradient(180deg, #0a0a0a, #0a0d10, #0a0a0a); }
-        #slide-3 { background: linear-gradient(180deg, #0a0a0a, #100a0d, #0a0a0a); }
-        #slide-4 { background: linear-gradient(180deg, #0a0a0a, #0a0d12, #0a0a0a); }
-        #slide-5 { background: linear-gradient(180deg, #0a0a0a, #0d0a10, #0a0a0a); }
-        #slide-6 { background: linear-gradient(180deg, #0a0a0a, #0a0a0d, #0a0a0a); }
-        #slide-7 { background: linear-gradient(180deg, #0a0a0a, #100a10, #0a0a0a); }
-
-        /* ===== YUZHANG ===== */
-        .yuzhang-quote {
-            font-size: clamp(1.2rem, 5vw, 1.6rem); line-height: 2.2; padding: 30px 0; position: relative;
-        }
-        .yuzhang-quote::before, .yuzhang-quote::after {
-            content: ''; position: absolute; width: 40px; height: 1px;
-            background: var(--rose); opacity: 0.4;
-        }
-        .yuzhang-quote::before { top: 0; left: 50%; transform: translateX(-50%); }
-        .yuzhang-quote::after { bottom: 0; left: 50%; transform: translateX(-50%); }
-        .yuzhang-emoji { font-size: 48px; display: block; margin-bottom: 20px; filter: grayscale(30%); }
-        .yuzhang-desc {
-            font-size: 0.9rem; opacity: 0.5; margin-top: 20px;
-            font-family: -apple-system, 'PingFang SC', sans-serif; line-height: 1.8;
-        }
-
-        /* ===== SCENE CARDS ===== */
-        .scene-card {
-            background: rgba(255,255,255,0.025); border-radius: 20px; padding: 28px 22px;
-            border: 1px solid rgba(255,255,255,0.05); margin-bottom: 18px;
-            text-align: left; line-height: 2; font-size: 0.95rem; opacity: 0.85;
-        }
-        .scene-card .scene-title {
-            font-size: 0.75rem; letter-spacing: 4px; opacity: 0.4; margin-bottom: 10px;
-            font-family: -apple-system, 'PingFang SC', sans-serif;
-        }
-
-        /* ===== PHOTO CARDS ===== */
+        /* ===== PHOTO CARD ===== */
         .photo-card {
             position: relative; border-radius: 20px; overflow: hidden;
-            margin-bottom: 18px; min-height: 220px;
+            margin-bottom: 14px; min-height: 200px;
             display: flex; align-items: flex-end;
         }
         .photo-card img {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; filter: brightness(0.45) saturate(0.8);
+            object-fit: cover; filter: brightness(0.4) saturate(0.7);
         }
-        .photo-card .photo-overlay {
-            position: relative; z-index: 2; padding: 24px 20px; width: 100%;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        .photo-card .overlay {
+            position: relative; z-index: 2; padding: 20px; width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.75));
         }
-        .photo-card .photo-label {
-            font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5; margin-bottom: 6px;
-            font-family: -apple-system, 'PingFang SC', sans-serif;
+        .photo-card .p-label {
+            font-size: 0.7rem; letter-spacing: 2px; opacity: 0.4; margin-bottom: 6px;
         }
-        .photo-card .photo-text {
-            font-size: 0.9rem; line-height: 1.9; opacity: 0.85;
-        }
-        .photo-row {
-            display: flex; gap: 8px; margin-bottom: 18px;
-        }
-        .photo-row .photo-card { flex: 1; margin-bottom: 0; min-height: 180px; }
-        .timi-card {
-            display: flex; gap: 16px; align-items: center;
-            background: rgba(255,255,255,0.025); border-radius: 20px;
-            padding: 16px; border: 1px solid rgba(255,255,255,0.05);
-            margin-top: 16px;
-        }
-        .timi-card img {
-            width: 80px; height: 80px; border-radius: 16px; object-fit: cover;
-            filter: brightness(0.85);
-        }
-        .timi-card .timi-text {
-            font-size: 0.85rem; line-height: 1.8; opacity: 0.7;
-            text-align: left;
-        }
+        .photo-card .p-text { font-size: 0.9rem; line-height: 1.8; opacity: 0.85; }
+        .photo-row { display: flex; gap: 8px; margin-bottom: 14px; }
+        .photo-row .photo-card { flex: 1; margin-bottom: 0; min-height: 160px; }
 
-        /* ===== REASONS ===== */
-        .reason-list { text-align: left; max-width: 420px; margin: 0 auto; }
-        .reason-item {
-            display: flex; align-items: flex-start; gap: 14px;
-            padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-            opacity: 0; transform: translateX(-20px); transition: all 0.5s ease;
+        /* ===== TIMI ===== */
+        .timi-card {
+            display: flex; gap: 14px; align-items: center;
+            background: rgba(255,255,255,0.03); border-radius: 20px;
+            padding: 14px 16px; border: 1px solid rgba(255,255,255,0.05);
+            margin-top: 14px; text-align: left;
         }
-        .reason-item.visible { opacity: 1; transform: translateX(0); }
-        .reason-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rose); flex-shrink: 0; margin-top: 8px; }
-        .reason-text { font-size: 1rem; line-height: 1.8; opacity: 0.8; }
+        .timi-card img { width: 72px; height: 72px; border-radius: 14px; object-fit: cover; }
+        .timi-card .timi-info { font-size: 0.85rem; line-height: 1.7; opacity: 0.7; }
+
+        /* ===== REASON ===== */
+        .r-list { text-align: left; max-width: 400px; margin: 0 auto; }
+        .r-item {
+            display: flex; align-items: flex-start; gap: 12px;
+            padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+            opacity: 0; transform: translateX(-16px); transition: all 0.4s ease;
+        }
+        .r-item.visible { opacity: 1; transform: translateX(0); }
+        .r-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); flex-shrink: 0; margin-top: 9px; }
+        .r-text { font-size: 0.95rem; line-height: 1.7; opacity: 0.8; }
 
         /* ===== PROMISE ===== */
-        .promise-item {
-            display: flex; align-items: center; gap: 12px;
-            padding: 14px 20px; margin-bottom: 10px;
+        .p-item {
+            padding: 14px 18px; margin-bottom: 8px;
             background: rgba(255,255,255,0.02); border-radius: 12px;
-            font-size: 0.95rem; line-height: 1.7;
-            opacity: 0; transform: translateY(16px); transition: all 0.5s ease;
+            font-size: 0.95rem; line-height: 1.6;
+            opacity: 0; transform: translateY(12px); transition: all 0.4s ease;
         }
-        .promise-item.visible { opacity: 0.85; transform: translateY(0); }
+        .p-item.visible { opacity: 0.85; transform: translateY(0); }
 
         /* ===== LETTER ===== */
         .letter-box {
-            background: rgba(201,123,132,0.04); border-radius: 24px; padding: 36px 24px;
-            border: 1px solid rgba(201,123,132,0.12); margin-top: 16px;
+            background: rgba(201,123,132,0.04); border-radius: 20px; padding: 28px 20px;
+            border: 1px solid rgba(201,123,132,0.1);
         }
-        .letter-title { font-size: clamp(1.4rem, 5vw, 2rem); font-weight: 400; margin-bottom: 24px; color: var(--rose); opacity: 0.9; }
+        .letter-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 20px; color: var(--rose); opacity: 0.8; }
         #letterText {
-            font-size: 0.95rem; line-height: 2.2; opacity: 0.85;
-            min-height: 180px; text-align: left; white-space: pre-wrap;
+            font-size: 0.95rem; line-height: 2; opacity: 0.8;
+            min-height: 160px; text-align: left; white-space: pre-wrap;
         }
-        .letter-sign { text-align: right; margin-top: 24px; font-size: 1rem; color: var(--rose); opacity: 0.7; }
+        .letter-sign { text-align: right; margin-top: 20px; font-size: 0.95rem; color: var(--rose); opacity: 0.6; }
 
         /* ===== NAV ===== */
         .bottom-nav {
             position: fixed; bottom: 0; left: 0; right: 0;
             padding: 8px 0 calc(8px + var(--safe-bottom));
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(20px);
-            display: flex; justify-content: center; align-items: center; gap: 6px;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(20px);
+            display: flex; justify-content: center; align-items: center; gap: 5px;
             z-index: 200; border-top: 1px solid rgba(255,255,255,0.04);
         }
-        .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.15); transition: all 0.4s; }
-        .nav-dot.active { background: var(--rose); width: 20px; border-radius: 3px; box-shadow: 0 0 8px rgba(201,123,132,0.4); }
+        .nav-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.12); transition: all 0.4s; }
+        .nav-dot.active { background: var(--rose); width: 18px; border-radius: 3px; }
         .nav-share {
-            color: var(--rose); font-size: 0.7rem; padding: 5px 12px; border-radius: 16px;
-            background: rgba(201,123,132,0.08); border: 1px solid rgba(201,123,132,0.15);
-            cursor: pointer; transition: all 0.3s; margin-left: 8px;
-            font-family: -apple-system, 'PingFang SC', sans-serif;
+            color: var(--rose); font-size: 0.7rem; padding: 4px 10px; border-radius: 14px;
+            background: rgba(201,123,132,0.06); border: 1px solid rgba(201,123,132,0.12);
+            cursor: pointer; margin-left: 6px;
         }
         .nav-share:active { transform: scale(0.9); }
-
         .toast {
             position: fixed; top: calc(20px + var(--safe-top)); left: 50%;
             transform: translateX(-50%) translateY(-80px);
-            background: rgba(201,123,132,0.85); color: #fff;
-            padding: 10px 22px; border-radius: 24px; font-size: 0.85rem; z-index: 9999;
+            background: rgba(201,123,132,0.8); color: #fff;
+            padding: 8px 20px; border-radius: 20px; font-size: 0.85rem; z-index: 9999;
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            font-family: -apple-system, 'PingFang SC', sans-serif;
         }
         .toast.show { transform: translateX(-50%) translateY(0); }
-
         .page-counter {
-            position: fixed; top: calc(16px + var(--safe-top)); right: calc(16px + var(--safe-right));
-            font-size: 0.7rem; opacity: 0.25; z-index: 200;
-            font-family: -apple-system, 'PingFang SC', sans-serif;
+            position: fixed; top: calc(14px + var(--safe-top)); right: calc(14px + var(--safe-right));
+            font-size: 0.65rem; opacity: 0.2; z-index: 200;
         }
-
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
@@ -271,32 +211,37 @@
     <div class="slide active" id="slide-0">
         <div class="opening-glow"></div>
         <div class="slide-inner">
-            <div class="opening-line">致 某 个 特 别 的 人</div>
+            <div class="opening-emoji">🌙</div>
             <h1 class="opening-title" id="openTitle"></h1>
-            <div class="opening-moon">🌙</div>
+            <div class="opening-sub">一个关于缘分的故事</div>
+            <div class="birthday-box">
+                <div class="birthday-label">🎂 她的生日倒计时</div>
+                <div class="birthday-count" id="bdayCount"></div>
+                <div class="birthday-date">6月10日</div>
+            </div>
         </div>
-        <div class="scroll-hint">轻触上滑</div>
+        <div class="scroll-hint">↑ 上滑开始 ↑</div>
     </div>
 
     <!-- 1: 缘起 -->
     <div class="slide below" id="slide-1">
         <div class="slide-inner">
-            <div class="section-label">缘 起</div>
-            <h2 class="section-title">有些人<br>隔着整个太平洋</h2>
-            <div class="poem-card">
-                去年九月，我离开了美国<br>
-                不是因为谁<br>
-                只是觉得时候到了<br><br>
-                后来我在上海落脚<br>
-                生活像一杯温开水<br>
-                <span class="hl">直到遇见你</span>
+            <div class="s-label">一 月</div>
+            <h2 class="s-title">故事的开始</h2>
+            <div class="card">
+                去年九月我回国<br>
+                不是因为谁，就是时候到了<br><br>
+                后来在上海落了脚<br>
+                今年一月份，我们在网上认识了<br><br>
+                <span class="hl">一开始就是随便聊聊</span><br>
+                有一搭没一搭的<br>
+                谁也没往心里去
             </div>
-            <div class="fate-badge">一月 · 线上相识</div>
-            <div class="poem-card">
-                起初只是简单的问候<br>
-                有一搭没一搭<br>
-                谁也没有多想<br><br>
-                <span class="hl">但缘分这种东西<br>从来不需要预谋</span>
+            <div class="card">
+                但缘分这东西挺神奇的<br>
+                你以为只是随口聊天<br>
+                其实命运在偷偷织网<br><br>
+                <span class="hl">等你发现的时候<br>已经逃不掉了</span>
             </div>
         </div>
     </div>
@@ -304,94 +249,95 @@
     <!-- 2: 豫章路 -->
     <div class="slide below" id="slide-2">
         <div class="slide-inner">
-            <div class="section-label">心 倾</div>
-            <h2 class="section-title">豫章路</h2>
-            <div class="yuzhang-emoji">🌸</div>
-            <div class="yuzhang-quote">
+            <div class="s-label">四 月</div>
+            <h2 class="s-title">豫章路</h2>
+            <div class="card" style="text-align: center; font-size: 1.1rem; line-height: 2.2;">
                 四月你去了南昌<br>
-                我的故乡<br><br>
-                我不过是随口提了一句<br>
-                小时候住过的那条路<br>
-                叫豫章路<br><br>
-                你却记在了心里<br>
-                真的去了
+                我的老家<br><br>
+                我就随口说了一句<br>
+                小时候住豫章路<br><br>
+                <span class="hl">你居然真的去了</span>
             </div>
-            <div class="yuzhang-desc">有些人的用心，不是用嘴说的。<br>是把你随口说的话，当成重要的事去做。</div>
+            <div class="card" style="text-align: center; opacity: 0.5;">
+                我觉得从那时候开始<br>
+                就不太一样了<br><br>
+                你把我的随口一提<br>
+                当成了重要的事<br><br>
+                <span class="hl">这种感觉很温暖</span>
+            </div>
         </div>
     </div>
 
     <!-- 3: 在一起 -->
     <div class="slide below" id="slide-3">
         <div class="slide-inner">
-            <div class="section-label">相 许</div>
-            <h2 class="section-title">五月八日</h2>
-            <div class="poem-card" style="border-color: rgba(201,123,132,0.15);">
-                你从郑州坐高铁来上海<br>
-                跨越了一千公里<br><br>
-                那天我们决定<br>
-                <span class="hl">在一起</span><br><br>
-                二十天不到<br>
-                我们来回见了三次面<br>
-                你来上海一次<br>
-                我去郑州两次<br><br>
-                上海 · 郑州 · 南昌<br>
-                <span class="hl">三座城市，串起了我们的故事</span>
+            <div class="s-label">五 月 八 日</div>
+            <h2 class="s-title">我们在一起了</h2>
+            <div class="photo-card">
+                <img src="images/river.jpg" alt="上海">
+                <div class="overlay">
+                    <div class="p-text">
+                        你从郑州坐高铁来上海<br>
+                        跨了一千多公里<br>
+                        <span class="hl2">那天我们决定在一起</span>
+                    </div>
+                </div>
             </div>
-            <div class="fate-badge">💕 20天 · 3次相见</div>
+            <div class="card" style="text-align: center;">
+                后来不到二十天<br>
+                我们来回见了三次面<br>
+                你来上海一次，我去郑州两次<br><br>
+                <span class="hl">三座城市 · 三次相见<br>缘分大概就是这个意思吧</span>
+            </div>
         </div>
     </div>
 
-    <!-- 4: 上海·宁静 -->
+    <!-- 4: 上海的回忆（照片） -->
     <div class="slide below" id="slide-4">
         <div class="slide-inner">
-            <div class="section-label">印 记</div>
-            <h2 class="section-title">那些宁静的时刻</h2>
+            <div class="s-label">上 海 · 我 们 的 地 方</div>
+            <h2 class="s-title">印象最深的时刻</h2>
 
             <div class="photo-card">
                 <img src="images/flower.jpg" alt="世博公园">
-                <div class="photo-overlay">
-                    <div class="photo-label">世 博 公 园</div>
-                    <div class="photo-text">
-                        你居然能认出好多花<br>
-                        我真的很惊讶<br>
-                        我们坐在河边的台阶上<br>
-                        <span class="hl-water">旁边有鸟叫，很宁静</span>
+                <div class="overlay">
+                    <div class="p-label">世博公园</div>
+                    <div class="p-text">
+                        你居然认识好多花，我真的很惊讶<br>
+                        坐在河边台阶上，手托着脸<br>
+                        <span class="hl2">鸟叫着，很宁静</span>
                     </div>
                 </div>
             </div>
 
             <div class="photo-row">
                 <div class="photo-card">
-                    <img src="images/park.jpg" alt="河边">
-                    <div class="photo-overlay">
-                        <div class="photo-text">小河 · 树<br><span class="hl-water">鸟声</span></div>
-                    </div>
+                    <img src="images/park.jpg" alt="小河">
+                    <div class="overlay"><div class="p-text">小河 · 树<br><span class="hl2">远处上海中心</span></div></div>
                 </div>
                 <div class="photo-card">
                     <img src="images/skyline.jpg" alt="上海中心">
-                    <div class="photo-overlay">
-                        <div class="photo-text">远处<br><span class="hl-water">上海中心</span></div>
-                    </div>
+                    <div class="overlay"><div class="p-text">河对岸<br><span class="hl2">好天气</span></div></div>
                 </div>
             </div>
 
             <div class="photo-card">
                 <img src="images/night.jpg" alt="黄浦江">
-                <div class="photo-overlay">
-                    <div class="photo-label">黄 浦 江 边 · 夜</div>
-                    <div class="photo-text">
-                        她穿着我的外套<br>
-                        手拉手走过居民区<br>
-                        找了一张长椅，她躺下来<br>
+                <div class="overlay">
+                    <div class="p-label">黄浦江边 · 晚上</div>
+                    <div class="p-text">
+                        你穿着我的外套<br>
+                        手拉手走过了居民区<br>
+                        找了张长椅你躺下<br>
                         头枕在我腿上<br>
-                        <span class="hl-water">江水哗啦啦的，也很宁静</span>
+                        <span class="hl2">江水哗啦啦的，很宁静</span>
                     </div>
                 </div>
             </div>
 
-            <div class="poem-card" style="text-align:center; border-color: rgba(126,168,184,0.15);">
-                后来我发现<br>
-                <span class="hl-water">印象最深的时刻<br>都是最宁静的时候</span>
+            <div class="card" style="text-align: center;">
+                后来想想<br>
+                <span class="hl2">印象最深的时刻<br>都是最宁静的时候</span>
             </div>
         </div>
     </div>
@@ -399,20 +345,19 @@
     <!-- 5: 喜欢的理由 -->
     <div class="slide below" id="slide-5">
         <div class="slide-inner">
-            <div class="section-label">倾 心</div>
-            <h2 class="section-title">因为是你</h2>
-            <div class="reason-list">
-                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你把我的随口一提，当成了郑重其事</div></div>
-                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你愿意跨越千里，只为见我一面</div></div>
-                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你认识好多好多花，让我惊讶又欢喜</div></div>
-                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你很有爱心，会帮助流浪的小动物</div></div>
-                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你有一只可爱的布偶猫，叫 Timi</div></div>
-                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">和你在一起的时候，世界变得很宁静</div></div>
-                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">从美国到中国，绕了半个地球，原来是为了遇见你</div></div>
+            <div class="s-label">关 于 你</div>
+            <h2 class="s-title">为什么是你</h2>
+            <div class="r-list">
+                <div class="r-item"><div class="r-dot"></div><div class="r-text">你把我的随口一提，当成了郑重其事</div></div>
+                <div class="r-item"><div class="r-dot"></div><div class="r-text">你愿意跨一千里来找我</div></div>
+                <div class="r-item"><div class="r-dot"></div><div class="r-text">你认识好多花，让我刮目相看</div></div>
+                <div class="r-item"><div class="r-dot"></div><div class="r-text">你很有爱心，会帮流浪小动物</div></div>
+                <div class="r-item"><div class="r-dot"></div><div class="r-text">和你在一起的时候，时间特别快</div></div>
+                <div class="r-item"><div class="r-dot"></div><div class="r-text">绕了半个地球，原来是为了遇见你</div></div>
             </div>
             <div class="timi-card">
                 <img src="images/timi.jpg" alt="Timi">
-                <div class="timi-text">Timi<br>她家的小布偶猫<br>和她一样可爱</div>
+                <div class="timi-info">还有 Timi 🐱<br>你家的小布偶猫<br>和你一样可爱</div>
             </div>
         </div>
     </div>
@@ -420,31 +365,30 @@
     <!-- 6: 承诺 -->
     <div class="slide below" id="slide-6">
         <div class="slide-inner">
-            <div class="section-label">期 许</div>
-            <h2 class="section-title">我想对你说</h2>
-            <div class="promise-item"><span>不管上海还是郑州，我都会主动去找你</span></div>
-            <div class="promise-item"><span>想听你讲每一天发生的事，好的坏的都想听</span></div>
-            <div class="promise-item"><span>等我们准备好了，在一个城市好好生活</span></div>
-            <div class="promise-item"><span>珍惜这段缘分，不辜负你千里来找我的勇气</span></div>
-            <div class="promise-item"><span>以后的日子，我想一直有你</span></div>
+            <div class="s-label">以 后</div>
+            <h2 class="s-title">想跟你说</h2>
+            <div class="p-item">不管上海还是郑州，我都会去找你</div>
+            <div class="p-item">想听你讲每天发生的事，好的坏的</div>
+            <div class="p-item">等准备好了，我们在一个城市住</div>
+            <div class="p-item">珍惜这段缘分，不浪费你的勇气</div>
+            <div class="p-item">以后的日子，想一直有你</div>
         </div>
     </div>
 
     <!-- 7: 情书 -->
     <div class="slide below" id="slide-7">
         <div class="slide-inner">
-            <div class="section-label">此 心</div>
+            <div class="s-label">最 后</div>
             <div class="letter-box">
-                <div class="letter-title">见字如面</div>
+                <div class="letter-title">写给你</div>
                 <div id="letterText"></div>
-                <div class="letter-sign">—— 龚方正</div>
+                <div class="letter-sign">—— 方正</div>
             </div>
         </div>
     </div>
 
 </div>
 
-<!-- NAV -->
 <div class="bottom-nav">
     <div class="nav-dot active" data-slide="0"></div>
     <div class="nav-dot" data-slide="1"></div>
@@ -458,140 +402,137 @@
 </div>
 
 <script>
-(function() {
+(function(){
     'use strict';
-    var currentSlide = 0, totalSlides = 8, touchStartY = 0, touchStartTime = 0, isAnimating = false, slideAnimated = {};
+    var cur = 0, total = 8, ty = 0, tt = 0, animating = false, done = {};
 
-    // ===== PARTICLES =====
-    var canvas = document.getElementById('particleCanvas'), ctx = canvas.getContext('2d'), particles = [];
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+    // Birthday countdown
+    function updateBirthday() {
+        var now = new Date();
+        var bday = new Date(now.getFullYear(), 5, 10); // June 10 (month is 0-indexed)
+        if (bday < now) bday = new Date(now.getFullYear() + 1, 5, 10);
+        var diff = Math.ceil((bday - now) / (1000 * 60 * 60 * 24));
+        document.getElementById('bdayCount').textContent = diff + ' 天';
+    }
+    updateBirthday();
 
-    function Particle() { this.reset(); }
-    Particle.prototype.reset = function() {
+    // Particles
+    var canvas = document.getElementById('particleCanvas'), ctx = canvas.getContext('2d'), ps = [];
+    function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
+    resize(); addEventListener('resize', resize);
+
+    function P() { this.reset(); }
+    P.prototype.reset = function() {
         this.x = Math.random() * canvas.width;
-        this.y = -10 - Math.random() * 80;
-        this.size = 3 + Math.random() * 8;
-        this.speedY = 0.15 + Math.random() * 0.45;
-        this.speedX = (Math.random() - 0.5) * 0.25;
-        this.opacity = 0.06 + Math.random() * 0.12;
-        this.rotation = Math.random() * Math.PI * 2;
-        this.rotSpeed = (Math.random() - 0.5) * 0.008;
-        var colors = ['201,123,132','212,165,116','184,169,201','126,168,184'];
-        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.y = -10 - Math.random() * 60;
+        this.s = 3 + Math.random() * 6;
+        this.vy = 0.12 + Math.random() * 0.35;
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.o = 0.04 + Math.random() * 0.08;
+        this.r = Math.random() * 6.28;
+        this.vr = (Math.random() - 0.5) * 0.006;
+        var cs = ['201,123,132','212,165,116','126,168,184'];
+        this.c = cs[Math.floor(Math.random()*cs.length)];
     };
-    Particle.prototype.update = function() {
-        this.y += this.speedY;
-        this.x += this.speedX + Math.sin(this.y * 0.008) * 0.15;
-        this.rotation += this.rotSpeed;
+    P.prototype.tick = function() {
+        this.y += this.vy; this.x += this.vx + Math.sin(this.y*0.006)*0.1; this.r += this.vr;
         if (this.y > canvas.height + 10) this.reset();
     };
-    Particle.prototype.draw = function() {
-        ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation);
-        ctx.globalAlpha = this.opacity; ctx.fillStyle = 'rgb(' + this.color + ')';
-        var s = this.size;
+    P.prototype.draw = function() {
+        ctx.save(); ctx.translate(this.x,this.y); ctx.rotate(this.r);
+        ctx.globalAlpha = this.o; ctx.fillStyle = 'rgb('+this.c+')';
+        var s = this.s;
         ctx.beginPath();
-        ctx.moveTo(0, -s * 0.3);
-        ctx.bezierCurveTo(s * 0.5, -s, s, -s * 0.3, 0, s * 0.5);
-        ctx.bezierCurveTo(-s, -s * 0.3, -s * 0.5, -s, 0, -s * 0.3);
+        ctx.moveTo(0,-s*0.3);
+        ctx.bezierCurveTo(s*0.5,-s,s,-s*0.3,0,s*0.5);
+        ctx.bezierCurveTo(-s,-s*0.3,-s*0.5,-s,0,-s*0.3);
         ctx.fill(); ctx.restore();
     };
-    for (var i = 0; i < 18; i++) { var p = new Particle(); p.y = Math.random() * canvas.height; particles.push(p); }
-    function animateParticles() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (var i = 0; i < particles.length; i++) { particles[i].update(); particles[i].draw(); } requestAnimationFrame(animateParticles); }
-    animateParticles();
+    for(var i=0;i<12;i++){var p=new P();p.y=Math.random()*canvas.height;ps.push(p);}
+    (function loop(){ctx.clearRect(0,0,canvas.width,canvas.height);for(var i=0;i<ps.length;i++){ps[i].tick();ps[i].draw();}requestAnimationFrame(loop);})();
 
-    // ===== TOUCH BURST =====
-    var emojis = ['✨','🌸','💫','🌙','🍃'];
-    function createBurstAt(x, y) {
-        for (var i = 0; i < 4; i++) {
-            var el = document.createElement('div'); el.className = 'touch-heart';
-            el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-            el.style.left = (x - 10 + (Math.random()-0.5)*40) + 'px';
-            el.style.top = (y - 10 + (Math.random()-0.5)*30) + 'px';
-            el.style.animationDelay = (i * 0.1) + 's';
+    // Touch burst
+    var em = ['✨','🌸','💫','🌙','🍃'];
+    document.addEventListener('touchstart',function(e){
+        var t=e.touches[0];
+        for(var i=0;i<3;i++){
+            var el=document.createElement('div');el.className='touch-heart';
+            el.textContent=em[Math.floor(Math.random()*em.length)];
+            el.style.left=(t.clientX-8+(Math.random()-0.5)*30)+'px';
+            el.style.top=(t.clientY-8+(Math.random()-0.5)*20)+'px';
             document.body.appendChild(el);
-            setTimeout(function(e){ e.remove(); }.bind(null,el), 1500);
+            setTimeout(function(e){e.remove();}.bind(null,el),1400);
         }
-    }
-    document.addEventListener('touchstart', function(e) { var t = e.touches[0]; createBurstAt(t.clientX, t.clientY); }, {passive: true});
+    },{passive:true});
 
-    // ===== SLIDE NAV =====
-    var slides = document.querySelectorAll('.slide'), dots = document.querySelectorAll('.nav-dot'), counter = document.getElementById('pageCounter');
-    function goToSlide(idx) {
-        if (idx < 0 || idx >= totalSlides || isAnimating) return;
-        isAnimating = true;
-        for (var i = 0; i < totalSlides; i++) {
-            slides[i].className = 'slide';
-            if (i < idx) slides[i].classList.add('above');
-            else if (i > idx) slides[i].classList.add('below');
+    // Nav
+    var slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.nav-dot'),ctr=document.getElementById('pageCounter');
+    function go(n){
+        if(n<0||n>=total||animating)return;
+        animating=true;
+        for(var i=0;i<total;i++){
+            slides[i].className='slide';
+            if(i<n)slides[i].classList.add('above');
+            else if(i>n)slides[i].classList.add('below');
             else slides[i].classList.add('active');
         }
-        dots.forEach(function(d, i){ d.classList.toggle('active', i === idx); });
-        counter.textContent = (idx + 1) + ' / ' + totalSlides;
-        currentSlide = idx;
-        triggerAnimations(idx);
-        setTimeout(function(){ isAnimating = false; }, 850);
+        dots.forEach(function(d,i){d.classList.toggle('active',i===n);});
+        ctr.textContent=(n+1)+' / '+total;
+        cur=n; fire(n);
+        setTimeout(function(){animating=false;},850);
     }
-    document.addEventListener('touchstart', function(e) { touchStartY = e.touches[0].clientY; touchStartTime = Date.now(); }, {passive: true});
-    document.addEventListener('touchend', function(e) {
-        var dy = touchStartY - e.changedTouches[0].clientY, dt = Date.now() - touchStartTime;
-        if (Math.abs(dy) > 50 && dt < 500) goToSlide(currentSlide + (dy > 0 ? 1 : -1));
-    }, {passive: true});
-    document.addEventListener('wheel', function(e) { e.preventDefault(); if (Math.abs(e.deltaY) > 30) goToSlide(currentSlide + (e.deltaY > 0 ? 1 : -1)); }, {passive: false});
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowDown' || e.key === ' ') goToSlide(currentSlide + 1);
-        if (e.key === 'ArrowUp') goToSlide(currentSlide - 1);
+    document.addEventListener('touchstart',function(e){ty=e.touches[0].clientY;tt=Date.now();},{passive:true});
+    document.addEventListener('touchend',function(e){
+        var dy=ty-e.changedTouches[0].clientY,dt=Date.now()-tt;
+        if(Math.abs(dy)>50&&dt<500)go(cur+(dy>0?1:-1));
+    },{passive:true});
+    document.addEventListener('wheel',function(e){e.preventDefault();if(Math.abs(e.deltaY)>30)go(cur+(e.deltaY>0?1:-1));},{passive:false});
+    document.addEventListener('keydown',function(e){
+        if(e.key==='ArrowDown'||e.key===' ')go(cur+1);
+        if(e.key==='ArrowUp')go(cur-1);
     });
-    dots.forEach(function(dot) { dot.addEventListener('click', function() { goToSlide(parseInt(this.dataset.slide)); }); });
+    dots.forEach(function(d){d.addEventListener('click',function(){go(parseInt(this.dataset.slide));});});
 
-    // ===== TYPEWRITER =====
-    function typeWriter(el, text, speed) {
-        var i = 0; el.textContent = '';
-        function tick() {
-            if (i < text.length) { el.textContent += text.charAt(i); i++; setTimeout(tick, text.charAt(i-1) === '\n' ? speed * 4 : speed); }
-        }
-        tick();
+    // Typewriter
+    function tw(el,txt,spd){
+        var i=0;el.textContent='';
+        function t(){if(i<txt.length){el.textContent+=txt.charAt(i);i++;setTimeout(t,txt.charAt(i-1)==='\n'?spd*3:spd);}}
+        t();
     }
 
-    // ===== ANIMATIONS =====
-    function triggerAnimations(idx) {
-        if (slideAnimated[idx]) return;
-        if (idx === 0) typeWriter(document.getElementById('openTitle'), '世间所有的相遇\n都是久别重逢', 100);
-        if (idx === 5) {
-            var items = document.querySelectorAll('#slide-5 .reason-item');
-            items.forEach(function(item, i){ setTimeout(function(){ item.classList.add('visible'); }, i * 200); });
+    // Per-slide animations
+    function fire(n){
+        if(done[n])return;
+        if(n===0)tw(document.getElementById('openTitle'),'嘿，婷婷',120);
+        if(n===5){
+            var items=document.querySelectorAll('#slide-5 .r-item');
+            items.forEach(function(it,i){setTimeout(function(){it.classList.add('visible');},i*150);});
         }
-        if (idx === 6) {
-            var items = document.querySelectorAll('#slide-6 .promise-item');
-            items.forEach(function(item, i){ setTimeout(function(){ item.classList.add('visible'); }, i * 180); });
+        if(n===6){
+            var items=document.querySelectorAll('#slide-6 .p-item');
+            items.forEach(function(it,i){setTimeout(function(){it.classList.add('visible');},i*130);});
         }
-        if (idx === 7) {
-            var el = document.getElementById('letterText');
-            var text = '婷婷，\n\n我绕了半个地球才明白，\n所有的路，都是通向你的路。\n\n一月认识你的时候，\n我还不知道你会去豫章路。\n\n五月你来上海的时候，\n我也不知道我们会坐在河边的台阶上，\n看远处的上海中心，听鸟叫。\n\n你穿着我的外套，\n头枕在我腿上，\n黄浦江的水哗啦啦响。\n\n那些时刻很宁静，\n却是我印象最深的。\n\n你有一只叫 Timi 的布偶猫，\n你会帮助流浪的小动物，\n你认识好多花。\n\n你是一个很有爱心也很可爱的人。\n\n我不知道以后会怎样，\n但我知道，\n我想一直有你。\n\n不管在上海，在郑州，还是在哪里，\n只要有你在的地方，\n就是我想去的方向。';
-            typeWriter(el, text, 42);
+        if(n===7){
+            tw(document.getElementById('letterText'),
+                '婷婷，\n\n我以前觉得缘分这个东西挺玄的\n直到遇见你\n\n你去了豫章路\n你来上海找我\n你穿着我的外套走在黄浦江边\n头枕在我腿上听江水\n\n你说你认识好多花\n你会帮流浪的小动物\n你有只叫 Timi 的布偶猫\n\n我发现跟你在一起的时候\n那些最安静的时刻\n反而是我最难忘的\n\n我不知道以后会怎样\n但我知道\n我想一直有你\n\n不管上海郑州\n你在哪，我就去哪\n\n生日快乐 🎂\n方正',38);
         }
-        slideAnimated[idx] = true;
+        done[n]=true;
     }
 
-    // ===== SHARE =====
-    window.sharePage = function() {
-        if (navigator.share) {
-            navigator.share({ title: '致那个让我心动的人', text: '世间所有的相遇，都是久别重逢。', url: window.location.href }).catch(function(){});
-        } else {
-            var input = document.createElement('input'); input.value = window.location.href;
-            document.body.appendChild(input); input.select(); document.execCommand('copy'); input.remove();
-            showToast('链接已复制 📋');
+    window.sharePage=function(){
+        if(navigator.share){
+            navigator.share({title:'给婷婷',url:location.href}).catch(function(){});
+        }else{
+            var inp=document.createElement('input');inp.value=location.href;
+            document.body.appendChild(inp);inp.select();document.execCommand('copy');inp.remove();
+            var t=document.getElementById('toast');t.textContent='链接已复制 📋';t.classList.add('show');
+            setTimeout(function(){t.classList.remove('show');},2500);
         }
     };
-    function showToast(msg) {
-        var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
-        setTimeout(function(){ t.classList.remove('show'); }, 2500);
-    }
 
-    // ===== INIT =====
-    setTimeout(function(){ triggerAnimations(0); }, 800);
-    function setVH() { document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px'); }
-    setVH(); window.addEventListener('resize', setVH);
+    setTimeout(function(){fire(0);},600);
+    function setVH(){document.documentElement.style.setProperty('--vh',(innerHeight*0.01)+'px');}
+    setVH();addEventListener('resize',setVH);
 })();
 </script>
 </body>
