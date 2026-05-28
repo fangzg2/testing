@@ -6,11 +6,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0a0a0a">
-    <title>致张婷婷 - 我的爱</title>
+    <title>致那个让我心动的人</title>
     <style>
         :root {
-            --pink: #ff6b95;
-            --orange: #ff8e53;
+            --pink: #e8a0bf;
+            --rose: #c97b84;
+            --gold: #d4a574;
+            --lavender: #b8a9c9;
             --safe-top: env(safe-area-inset-top, 0px);
             --safe-bottom: env(safe-area-inset-bottom, 0px);
             --safe-left: env(safe-area-inset-left, 0px);
@@ -22,33 +24,32 @@
         html, body {
             width: 100%; height: 100%;
             overflow: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-            background: #000; color: #fff;
+            font-family: 'Songti SC', 'STSong', 'Noto Serif SC', 'SimSun', serif;
+            background: #0a0a0a; color: #fff;
             -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
             touch-action: pan-y;
         }
 
-        /* ========== CANVAS PARTICLES ========== */
+        /* ========== CANVAS ========== */
         #particleCanvas {
             position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
             pointer-events: none; z-index: 100;
         }
 
-        /* ========== TOUCH HEART BURST ========== */
+        /* ========== TOUCH HEART ========== */
         .touch-heart {
             position: fixed; pointer-events: none; z-index: 9999;
-            font-size: 24px;
-            animation: heartBurst 1.2s ease-out forwards;
+            font-size: 20px;
+            animation: heartBurst 1.4s ease-out forwards;
         }
         @keyframes heartBurst {
-            0% { opacity: 1; transform: scale(0) translateY(0); }
-            50% { opacity: 1; transform: scale(1.5) translateY(-40px); }
-            100% { opacity: 0; transform: scale(0.5) translateY(-120px); }
+            0% { opacity: 0.8; transform: scale(0) translateY(0); }
+            40% { opacity: 0.8; transform: scale(1.2) translateY(-30px); }
+            100% { opacity: 0; transform: scale(0.3) translateY(-100px); }
         }
 
-        /* ========== SLIDESHOW CONTAINER ========== */
+        /* ========== SLIDESHOW ========== */
         .slideshow {
             width: 100%; height: 100%;
             position: relative; overflow: hidden;
@@ -58,7 +59,7 @@
             position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
             display: flex; align-items: center; justify-content: center;
-            transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.7s ease;
+            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.8s ease;
             will-change: transform, opacity;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
@@ -70,244 +71,289 @@
 
         .slide-inner {
             width: 100%;
-            max-width: 600px;
-            padding: calc(60px + var(--safe-top)) 24px calc(80px + var(--safe-bottom));
+            max-width: 560px;
+            padding: calc(60px + var(--safe-top)) 28px calc(90px + var(--safe-bottom));
             text-align: center;
             position: relative; z-index: 10;
         }
 
-        /* ========== SLIDE 0 - HERO ========== */
+        /* ========== SLIDE 0: OPENING ========== */
         #slide-0 {
-            background: linear-gradient(180deg, #0a0a0a 0%, #1a0a1e 50%, #0a0a0a 100%);
+            background: linear-gradient(180deg, #0a0a0a 0%, #0d0a12 40%, #100a18 70%, #0a0a0a 100%);
         }
-        .hero-glow {
-            position: absolute; top: 50%; left: 50%;
+        .opening-glow {
+            position: absolute; top: 45%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 80vw; height: 80vw; max-width: 500px; max-height: 500px;
-            background: radial-gradient(circle, rgba(255,107,149,0.25) 0%, transparent 70%);
-            animation: heroGlow 4s ease-in-out infinite;
+            width: 60vw; height: 60vw; max-width: 350px; max-height: 350px;
+            background: radial-gradient(circle, rgba(200,123,132,0.15) 0%, rgba(184,169,201,0.08) 40%, transparent 70%);
+            animation: openGlow 6s ease-in-out infinite;
         }
-        @keyframes heroGlow {
+        @keyframes openGlow {
             0%, 100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
-            50% { opacity: 0.9; transform: translate(-50%,-50%) scale(1.2); }
+            50% { opacity: 1; transform: translate(-50%,-50%) scale(1.15); }
         }
-        .hero-title {
-            font-size: clamp(2.8rem, 12vw, 5rem);
-            font-weight: 700; line-height: 1.2;
-            margin-bottom: 16px;
-            background: linear-gradient(180deg, #fff, rgba(255,255,255,0.5));
+        .opening-line {
+            font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+            color: var(--lavender);
+            letter-spacing: 8px;
+            margin-bottom: 40px;
+            opacity: 0.7;
+        }
+        .opening-title {
+            font-size: clamp(2rem, 8vw, 3.2rem);
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(232,160,191,0.6));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .hero-sub {
-            font-size: clamp(1.6rem, 6vw, 2.5rem);
-            color: var(--pink);
-            margin-bottom: 30px;
-            animation: heartBeat 2s ease-in-out infinite;
+        .opening-moon {
+            font-size: 60px;
+            filter: drop-shadow(0 0 40px rgba(212,165,116,0.4));
+            animation: moonFloat 5s ease-in-out infinite;
+            display: inline-block;
         }
-        .hero-heart {
-            font-size: 80px; display: inline-block;
-            filter: drop-shadow(0 0 30px rgba(255,107,149,0.8));
-            animation: heroFloat 3s ease-in-out infinite;
+        @keyframes moonFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
         }
-        @keyframes heroFloat { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-16px); } }
-        @keyframes heartBeat { 0%,100%{ transform: scale(1); } 50%{ transform: scale(1.06); } }
-
         .scroll-hint {
             position: absolute; bottom: calc(30px + var(--safe-bottom));
             left: 50%; transform: translateX(-50%);
-            opacity: 0.5; font-size: 0.85rem;
-            animation: hintBounce 2s infinite;
+            opacity: 0.35; font-size: 0.8rem;
+            letter-spacing: 3px;
+            animation: hintBounce 3s infinite;
+            font-family: -apple-system, 'PingFang SC', sans-serif;
         }
-        @keyframes hintBounce { 0%,100%{ transform: translateX(-50%) translateY(0); } 50%{ transform: translateX(-50%) translateY(8px); } }
+        @keyframes hintBounce {
+            0%,100%{ transform: translateX(-50%) translateY(0); }
+            50%{ transform: translateX(-50%) translateY(6px); }
+        }
 
-        /* ========== SLIDE 1 - ABOUT HER ========== */
+        /* ========== SLIDE 1: FATE ========== */
         #slide-1 {
-            background: linear-gradient(180deg, #0a0a0a, #1a0a2e);
+            background: linear-gradient(180deg, #0a0a0a, #0d0a14, #0a0a0a);
+        }
+        .section-label {
+            font-size: 0.8rem;
+            color: var(--gold);
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+            opacity: 0.6;
+            font-family: -apple-system, 'PingFang SC', sans-serif;
         }
         .section-title {
-            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            font-size: clamp(1.6rem, 6vw, 2.4rem);
+            font-weight: 400;
             margin-bottom: 12px;
+            line-height: 1.5;
         }
         .section-sub {
-            font-size: 1rem; opacity: 0.7; margin-bottom: 30px;
+            font-size: 0.95rem; opacity: 0.5; margin-bottom: 30px;
+            font-family: -apple-system, 'PingFang SC', sans-serif;
         }
-        .loc-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 24px; padding: 28px 24px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .poem-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px; padding: 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 16px;
+            text-align: left;
+            line-height: 2.2;
+            font-size: 1rem;
+            opacity: 0.85;
         }
-        .loc-card:active { transform: scale(0.97); }
-        .loc-icon { font-size: 48px; margin-bottom: 12px; }
-        .loc-title { font-size: 1.2rem; color: var(--pink); margin-bottom: 8px; }
-        .loc-desc { font-size: 0.95rem; opacity: 0.8; line-height: 1.6; }
-        .dist-badge {
-            display: inline-block; padding: 10px 28px;
-            background: rgba(255,107,149,0.15); border-radius: 30px;
-            color: var(--pink); font-size: 1.1rem; margin: 16px 0;
-            border: 1px solid rgba(255,107,149,0.3);
+        .poem-card .highlight {
+            color: var(--rose);
+        }
+        .fate-badge {
+            display: inline-block; padding: 10px 24px;
+            background: rgba(200,123,132,0.1); border-radius: 30px;
+            color: var(--rose); font-size: 0.9rem; margin: 12px 0;
+            border: 1px solid rgba(200,123,132,0.2);
+            font-family: -apple-system, 'PingFang SC', sans-serif;
         }
 
-        /* ========== SLIDE 2 - STORY ========== */
+        /* ========== SLIDE 2: STORY ========== */
         #slide-2 {
-            background: linear-gradient(180deg, #1a0a2e, #0a1a2e);
+            background: linear-gradient(180deg, #0a0a0a, #0a0d14, #0a0a0a);
         }
-        .timeline { max-width: 500px; margin: 0 auto; position: relative; padding-left: 30px; }
+        .timeline { max-width: 480px; margin: 0 auto; position: relative; padding-left: 28px; }
         .timeline::before {
-            content: ''; position: absolute; left: 10px; top: 0;
-            width: 2px; height: 100%;
-            background: linear-gradient(180deg, transparent, var(--pink), transparent);
+            content: ''; position: absolute; left: 8px; top: 0;
+            width: 1px; height: 100%;
+            background: linear-gradient(180deg, transparent, var(--rose), var(--lavender), transparent);
         }
         .tl-item {
-            margin-bottom: 28px; position: relative;
-            opacity: 0; transform: translateY(30px);
+            margin-bottom: 24px; position: relative;
+            opacity: 0; transform: translateY(24px);
             transition: all 0.6s ease;
         }
         .tl-item.visible { opacity: 1; transform: translateY(0); }
         .tl-item::before {
-            content: ''; position: absolute; left: -25px; top: 8px;
-            width: 12px; height: 12px; background: var(--pink);
-            border-radius: 50%; box-shadow: 0 0 12px rgba(255,107,149,0.7);
+            content: ''; position: absolute; left: -23px; top: 10px;
+            width: 8px; height: 8px; background: var(--rose);
+            border-radius: 50%; box-shadow: 0 0 10px rgba(201,123,132,0.5);
         }
-        .tl-date { color: var(--pink); font-size: 0.85rem; margin-bottom: 6px; }
+        .tl-date {
+            color: var(--gold); font-size: 0.8rem; margin-bottom: 6px;
+            font-family: -apple-system, 'PingFang SC', sans-serif;
+        }
         .tl-card {
-            background: rgba(255,255,255,0.05); border-radius: 16px;
-            padding: 20px; backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,107,149,0.2);
+            background: rgba(255,255,255,0.03); border-radius: 14px;
+            padding: 18px; border: 1px solid rgba(255,255,255,0.06);
         }
-        .tl-text { font-size: 0.95rem; line-height: 1.7; opacity: 0.9; }
+        .tl-text { font-size: 0.95rem; line-height: 1.9; opacity: 0.85; }
 
-        /* ========== SLIDE 3 - REASONS ========== */
+        /* ========== SLIDE 3: YUZHANG ROAD ========== */
         #slide-3 {
-            background: linear-gradient(180deg, #0a1a2e, #1a0a2e);
+            background: linear-gradient(180deg, #0a0a0a, #100a0d, #0a0a0a);
         }
-        .reason-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 14px; margin-top: 20px;
+        .yuzhang-quote {
+            font-size: clamp(1.2rem, 5vw, 1.6rem);
+            line-height: 2.2;
+            padding: 30px 0;
+            position: relative;
         }
-        .r-card {
-            background: rgba(255,255,255,0.03); border-radius: 20px;
-            padding: 24px 16px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.3s ease;
-            position: relative; overflow: hidden;
+        .yuzhang-quote::before, .yuzhang-quote::after {
+            content: ''; position: absolute;
+            width: 40px; height: 1px;
+            background: var(--rose);
+            opacity: 0.4;
         }
-        .r-card:active { transform: scale(0.95); }
-        .r-card::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(135deg, rgba(255,107,149,0.15), transparent);
-            opacity: 0; transition: opacity 0.3s;
+        .yuzhang-quote::before { top: 0; left: 50%; transform: translateX(-50%); }
+        .yuzhang-quote::after { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .yuzhang-emoji {
+            font-size: 48px; display: block; margin-bottom: 20px;
+            filter: grayscale(30%);
         }
-        .r-card:active::after { opacity: 1; }
-        .r-icon { font-size: 36px; margin-bottom: 10px; display: block; position: relative; z-index: 1; }
-        .r-title { font-size: 1rem; margin-bottom: 8px; position: relative; z-index: 1; }
-        .r-text { font-size: 0.8rem; opacity: 0.7; line-height: 1.5; position: relative; z-index: 1; }
+        .yuzhang-desc {
+            font-size: 0.9rem; opacity: 0.5; margin-top: 20px;
+            font-family: -apple-system, 'PingFang SC', sans-serif;
+            line-height: 1.8;
+        }
 
-        /* ========== SLIDE 4 - PROMISE ========== */
+        /* ========== SLIDE 4: REASONS ========== */
         #slide-4 {
-            background: linear-gradient(180deg, #1a0a2e, #2a1a3e, #1a0a2e);
+            background: linear-gradient(180deg, #0a0a0a, #0a0d10, #0a0a0a);
         }
-        .promise-item {
-            display: flex; align-items: center; gap: 14px;
-            padding: 18px 24px; margin-bottom: 16px;
-            background: rgba(255,255,255,0.04); border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.08);
-            font-size: 1.1rem;
-            opacity: 0; transform: translateX(-30px);
+        .reason-list {
+            text-align: left;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+        .reason-item {
+            display: flex; align-items: flex-start; gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            opacity: 0; transform: translateX(-20px);
             transition: all 0.5s ease;
         }
-        .promise-item.visible { opacity: 1; transform: translateX(0); }
-        .promise-icon { font-size: 1.8rem; flex-shrink: 0; }
+        .reason-item.visible { opacity: 1; transform: translateX(0); }
+        .reason-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--rose); flex-shrink: 0;
+            margin-top: 8px;
+        }
+        .reason-text {
+            font-size: 1rem; line-height: 1.8; opacity: 0.8;
+        }
 
-        /* ========== SLIDE 5 - CONFESSION ========== */
+        /* ========== SLIDE 5: PROMISE ========== */
         #slide-5 {
-            background: linear-gradient(180deg, #1a0a2e, #0a0a0a);
+            background: linear-gradient(180deg, #0a0a0a, #0d0a10, #0a0a0a);
         }
-        .conf-box {
-            background: rgba(255,107,149,0.08);
-            border-radius: 30px; padding: 40px 28px;
-            border: 1px solid rgba(255,107,149,0.2);
-            margin-top: 20px;
+        .promise-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 20px; margin-bottom: 10px;
+            background: rgba(255,255,255,0.02); border-radius: 12px;
+            font-size: 0.95rem; line-height: 1.7;
+            opacity: 0; transform: translateY(16px);
+            transition: all 0.5s ease;
         }
-        .conf-title {
-            font-size: clamp(2rem, 7vw, 3rem);
+        .promise-item.visible { opacity: 0.85; transform: translateY(0); }
+
+        /* ========== SLIDE 6: LETTER ========== */
+        #slide-6 {
+            background: linear-gradient(180deg, #0a0a0a, #100a10, #0a0a0a);
+        }
+        .letter-box {
+            background: rgba(201,123,132,0.04);
+            border-radius: 24px; padding: 36px 24px;
+            border: 1px solid rgba(201,123,132,0.12);
+            margin-top: 16px;
+        }
+        .letter-title {
+            font-size: clamp(1.4rem, 5vw, 2rem);
+            font-weight: 400;
             margin-bottom: 24px;
-            background: linear-gradient(45deg, var(--pink), var(--orange), #ffaaa5);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--rose);
+            opacity: 0.9;
         }
-        #confessionText {
-            font-size: 1rem; line-height: 2;
-            opacity: 0.9; min-height: 200px;
+        #letterText {
+            font-size: 0.95rem; line-height: 2.2;
+            opacity: 0.85; min-height: 180px;
             text-align: left; white-space: pre-wrap;
         }
-        .conf-name {
-            font-size: 2rem; color: var(--pink);
-            margin: 24px 0 16px;
-            animation: heartBeat 2s ease-in-out infinite;
+        .letter-sign {
+            text-align: right;
+            margin-top: 24px;
+            font-size: 1rem;
+            color: var(--rose);
+            opacity: 0.7;
         }
-        .conf-btn {
-            display: inline-block; padding: 16px 48px;
-            font-size: 1.1rem; color: #fff;
-            background: linear-gradient(45deg, var(--pink), var(--orange));
-            border: none; border-radius: 50px;
-            cursor: pointer; margin-top: 16px;
-            box-shadow: 0 12px 30px rgba(255,107,149,0.35);
-            transition: all 0.3s;
-        }
-        .conf-btn:active { transform: scale(0.95); }
 
         /* ========== BOTTOM NAV ========== */
         .bottom-nav {
             position: fixed; bottom: 0; left: 0; right: 0;
             padding: 8px 0 calc(8px + var(--safe-bottom));
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.8);
             backdrop-filter: blur(20px);
-            display: flex; justify-content: space-around; align-items: center;
+            display: flex; justify-content: center; align-items: center;
+            gap: 8px;
             z-index: 200;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid rgba(255,255,255,0.04);
         }
         .nav-dot {
-            width: 10px; height: 10px; border-radius: 50%;
-            background: rgba(255,255,255,0.25);
-            transition: all 0.3s;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            transition: all 0.4s;
         }
         .nav-dot.active {
-            background: var(--pink); width: 28px; border-radius: 5px;
-            box-shadow: 0 0 12px rgba(255,107,149,0.6);
+            background: var(--rose); width: 20px; border-radius: 3px;
+            box-shadow: 0 0 8px rgba(201,123,132,0.4);
         }
         .nav-share {
-            color: var(--pink); font-size: 0.75rem;
-            padding: 6px 14px; border-radius: 20px;
-            background: rgba(255,107,149,0.12);
-            border: 1px solid rgba(255,107,149,0.3);
+            color: var(--rose); font-size: 0.7rem;
+            padding: 5px 12px; border-radius: 16px;
+            background: rgba(201,123,132,0.08);
+            border: 1px solid rgba(201,123,132,0.15);
             cursor: pointer; transition: all 0.3s;
+            margin-left: 8px;
+            font-family: -apple-system, 'PingFang SC', sans-serif;
         }
         .nav-share:active { transform: scale(0.9); }
 
         /* ========== TOAST ========== */
         .toast {
             position: fixed; top: calc(20px + var(--safe-top));
-            left: 50%; transform: translateX(-50%) translateY(-100px);
-            background: rgba(255,107,149,0.9); color: #fff;
-            padding: 12px 24px; border-radius: 30px;
-            font-size: 0.9rem; z-index: 9999;
+            left: 50%; transform: translateX(-50%) translateY(-80px);
+            background: rgba(201,123,132,0.85); color: #fff;
+            padding: 10px 22px; border-radius: 24px;
+            font-size: 0.85rem; z-index: 9999;
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            backdrop-filter: blur(10px);
+            font-family: -apple-system, 'PingFang SC', sans-serif;
         }
         .toast.show { transform: translateX(-50%) translateY(0); }
 
-        /* ========== PAGE INDICATOR ========== */
+        /* ========== PAGE COUNTER ========== */
         .page-counter {
             position: fixed; top: calc(16px + var(--safe-top));
             right: calc(16px + var(--safe-right));
-            font-size: 0.75rem; opacity: 0.4; z-index: 200;
+            font-size: 0.7rem; opacity: 0.25; z-index: 200;
+            font-family: -apple-system, 'PingFang SC', sans-serif;
         }
 
-        /* ========== REDUCED MOTION ========== */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -319,105 +365,123 @@
 <body>
 
 <canvas id="particleCanvas"></canvas>
-
 <div class="toast" id="toast"></div>
-<div class="page-counter" id="pageCounter">1 / 6</div>
+<div class="page-counter" id="pageCounter">1 / 7</div>
 
 <div class="slideshow" id="slideshow">
 
-    <!-- SLIDE 0: HERO -->
+    <!-- SLIDE 0: 开篇 -->
     <div class="slide active" id="slide-0">
-        <div class="hero-glow"></div>
+        <div class="opening-glow"></div>
         <div class="slide-inner">
-            <h1 class="hero-title" id="heroTitle"></h1>
-            <div class="hero-sub" id="heroSub"></div>
-            <div class="hero-heart">❤️</div>
+            <div class="opening-line">致 某 个 特 别 的 人</div>
+            <h1 class="opening-title" id="openTitle"></h1>
+            <div class="opening-moon">🌙</div>
         </div>
-        <div class="scroll-hint">↑ 上滑开始 ↑</div>
+        <div class="scroll-hint">轻触上滑</div>
     </div>
 
-    <!-- SLIDE 1: ABOUT HER -->
+    <!-- SLIDE 1: 缘起 -->
     <div class="slide below" id="slide-1">
         <div class="slide-inner">
-            <h2 class="section-title">三座城市的缘分</h2>
-            <p class="section-sub">从大洋彼岸到你的身边</p>
-            <div class="loc-card">
-                <div class="loc-icon">🌸</div>
-                <div class="loc-title">她的城市 · 郑州</div>
-                <div class="loc-desc">河南省郑州市<br>中原大地，美丽富饶<br>她在这里，我的牵挂也在这里</div>
+            <div class="section-label">缘 起</div>
+            <h2 class="section-title">有些人<br>隔着整个太平洋</h2>
+            <div class="poem-card">
+                去年九月，我离开了美国<br>
+                不是因为谁<br>
+                只是觉得时候到了<br><br>
+                后来我在上海落脚<br>
+                生活像一杯温开水<br>
+                <span class="highlight">直到遇见你</span>
             </div>
-            <div class="loc-card">
-                <div class="loc-icon">🌆</div>
-                <div class="loc-title">我的城市 · 上海</div>
-                <div class="loc-desc">上海市<br>繁华的魔都<br>我在这里，等她来找我</div>
-            </div>
-            <div class="dist-badge">✈️ 20天，3次相见 ✈️</div>
-            <div class="loc-card" style="border-color: rgba(255,107,149,0.4);">
-                <div class="loc-icon">🌏</div>
-                <div class="loc-title">从美国到中国</div>
-                <div class="loc-desc">去年9月我回国，不是因为谁<br>但命运安排了最好的相遇<br>在对的时间，遇见对的你</div>
+            <div class="fate-badge">一月 · 线上相识</div>
+            <div class="poem-card">
+                起初只是简单的问候<br>
+                有一搭没一搭<br>
+                谁也没有多想<br><br>
+                <span class="highlight">但缘分这种东西<br>从来不需要预谋</span>
             </div>
         </div>
     </div>
 
-    <!-- SLIDE 2: STORY -->
+    <!-- SLIDE 2: 豫章路 -->
     <div class="slide below" id="slide-2">
         <div class="slide-inner">
-            <h2 class="section-title">我们的故事</h2>
-            <p class="section-sub">每一刻都值得纪念</p>
-            <div class="timeline">
-                <div class="tl-item"><div class="tl-date">🌏 以前 · 在美国的日子</div><div class="tl-card"><div class="tl-text">我一直在美国，工作、生活。那段日子很长，但命运已经在悄悄安排着什么。</div></div></div>
-                <div class="tl-item"><div class="tl-date">🏠 去年9月 · 回国</div><div class="tl-card"><div class="tl-text">不是因为谁，只是时候到了。我回到了中国，来到上海。一切重新开始。</div></div></div>
-                <div class="tl-item"><div class="tl-date">💬 今年1月 · 线上认识</div><div class="tl-card"><div class="tl-text">我们在网上认识了。一开始只是简单聊天，有一搭没一搭。谁也没想到，后来的故事会这么精彩。</div></div></div>
-                <div class="tl-item"><div class="tl-date">🌸 4月 · 她去了南昌</div><div class="tl-card"><div class="tl-text">她去了我的老家南昌，我们才真正熟悉起来。聊得更多了，理解得也更深了。我随口提了一句小时候住的豫章路——她记在了心里，真的去了。那一刻，我知道她不一样。</div></div></div>
-                <div class="tl-item"><div class="tl-date">💕 5月8日 · 她来上海找我</div><div class="tl-card"><div class="tl-text">她从郑州飞到上海来看我。就在那一天，我们决定在一起了。整个世界都亮了。</div></div></div>
-                <div class="tl-item"><div class="tl-date">🚄 之后 · 我去郑州 × 2</div><div class="tl-card"><div class="tl-text">没多久我就坐高铁去了郑州。去了两次。20天不到，我们已经来回见了3次面。我知道，这就是缘分。</div></div></div>
-                <div class="tl-item"><div class="tl-date">💫 现在 · 心在一起</div><div class="tl-card"><div class="tl-text">上海和郑州，不在同一个城市，但我们的心一直在一起。我希望以后一直和她好下去。</div></div></div>
+            <div class="section-label">心 倾</div>
+            <h2 class="section-title">豫章路</h2>
+            <div class="yuzhang-emoji">🌸</div>
+            <div class="yuzhang-quote">
+                四月你去了南昌<br>
+                我的故乡<br><br>
+                我不过是随口提了一句<br>
+                小时候住过的那条路<br>
+                叫豫章路<br><br>
+                你却记在了心里<br>
+                真的去了
             </div>
+            <div class="yuzhang-desc">有些人的用心，不是用嘴说的。<br>是把你随口说的话，当成重要的事去做。</div>
         </div>
     </div>
 
-    <!-- SLIDE 3: REASONS -->
+    <!-- SLIDE 3: 在一起 -->
     <div class="slide below" id="slide-3">
         <div class="slide-inner">
-            <h2 class="section-title">喜欢你的理由</h2>
-            <p class="section-sub">说也说不完</p>
-            <div class="reason-grid">
-                <div class="r-card"><span class="r-icon">🌸</span><div class="r-title">你去了豫章路</div><div class="r-text">我随口一提，你却记在心里</div></div>
-                <div class="r-card"><span class="r-icon">✈️</span><div class="r-title">你飞来上海找我</div><div class="r-text">5月8号，改变了一切</div></div>
-                <div class="r-card"><span class="r-icon">💕</span><div class="r-title">20天见3面</div><div class="r-text">谁也拦不住我们的缘分</div></div>
-                <div class="r-card"><span class="r-icon">😊</span><div class="r-title">你的笑容</div><div class="r-text">比阳光还温暖</div></div>
-                <div class="r-card"><span class="r-icon">💪</span><div class="r-title">你的勇敢</div><div class="r-text">让我敬佩不已</div></div>
-                <div class="r-card"><span class="r-icon">🤗</span><div class="r-title">你的温柔</div><div class="r-text">融化我所有防备</div></div>
-                <div class="r-card"><span class="r-icon">💫</span><div class="r-title">命运的安排</div><div class="r-text">从美国到中国，只为遇见你</div></div>
-                <div class="r-card"><span class="r-icon">💝</span><div class="r-title">你的一切</div><div class="r-text">我都好喜欢</div></div>
+            <div class="section-label">相 许</div>
+            <h2 class="section-title">五月八日</h2>
+            <div class="poem-card" style="border-color: rgba(201,123,132,0.15);">
+                你从郑州飞来上海<br>
+                跨越了一千公里<br><br>
+                那天我们决定<br>
+                <span class="highlight">在一起</span><br><br>
+                二十天不到<br>
+                我们来回见了三次面<br>
+                你来上海一次<br>
+                我去郑州两次<br><br>
+                上海 · 郑州 · 南昌<br>
+                <span class="highlight">三座城市，串起了我们的故事</span>
+            </div>
+            <div class="fate-badge">💕 20天 · 3次相见</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: 喜欢的理由 -->
+    <div class="slide below" id="slide-4">
+        <div class="slide-inner">
+            <div class="section-label">倾 心</div>
+            <h2 class="section-title">因为是你</h2>
+            <div class="reason-list">
+                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你把我的随口一提，当成了郑重其事</div></div>
+                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你愿意飞越千里，只为见我一面</div></div>
+                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你让我相信，缘分真的存在</div></div>
+                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">和你在一起的时候，时间过得特别快</div></div>
+                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你的笑，像春天的风</div></div>
+                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你的温柔，是有力量的那种</div></div>
+                <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">从美国到中国，绕了半个地球，原来是为了遇见你</div></div>
             </div>
         </div>
     </div>
 
-    <!-- SLIDE 4: PROMISE -->
-    <div class="slide below" id="slide-4">
+    <!-- SLIDE 5: 承诺 -->
+    <div class="slide below" id="slide-5">
         <div class="slide-inner">
-            <h2 class="section-title">我的承诺</h2>
-            <p class="section-sub">用行动证明一切</p>
-            <div class="promise-item"><span class="promise-icon">🛡️</span><span>我会保护你，不让你受任何委屈</span></div>
-            <div class="promise-item"><span class="promise-icon">😊</span><span>我会让你每天都开心快乐</span></div>
-            <div class="promise-item"><span class="promise-icon">🤝</span><span>我会尊重你，支持你的每一个决定</span></div>
-            <div class="promise-item"><span class="promise-icon">🌟</span><span>我会陪你成长，一起变得更好</span></div>
-            <div class="promise-item"><span class="promise-icon">🏠</span><span>我会给你一个温暖的家</span></div>
-            <div class="promise-item"><span class="promise-icon">❤️</span><span>我会永远爱你，不离不弃</span></div>
-            <div class="promise-item"><span class="promise-icon">🌈</span><span>我会陪你走过人生的每一个阶段</span></div>
+            <div class="section-label">期 许</div>
+            <h2 class="section-title">我想对你说</h2>
+            <div class="promise-item"><span>不管上海还是郑州，我都会主动去找你</span></div>
+            <div class="promise-item"><span>想听你讲每一天发生的事，好的坏的都想听</span></div>
+            <div class="promise-item"><span>等我们准备好了，在一个城市好好生活</span></div>
+            <div class="promise-item"><span>珍惜这段缘分，不辜负你飞来找我的勇气</span></div>
+            <div class="promise-item"><span>以后的日子，我想一直有你</span></div>
         </div>
     </div>
 
-    <!-- SLIDE 5: CONFESSION -->
-    <div class="slide below" id="slide-5">
+    <!-- SLIDE 6: 情书 -->
+    <div class="slide below" id="slide-6">
         <div class="slide-inner">
-            <div class="conf-box">
-                <h2 class="conf-title">我喜欢你</h2>
-                <div id="confessionText"></div>
-                <div class="conf-name">❤️ 张婷婷 ❤️</div>
-                <button class="conf-btn" onclick="handleAccept()">我愿意 💕</button>
+            <div class="section-label">此 心</div>
+            <div class="letter-box">
+                <div class="letter-title">见字如面</div>
+                <div id="letterText"></div>
+                <div class="letter-sign">—— 龚方正</div>
             </div>
         </div>
     </div>
@@ -432,7 +496,8 @@
     <div class="nav-dot" data-slide="3"></div>
     <div class="nav-dot" data-slide="4"></div>
     <div class="nav-dot" data-slide="5"></div>
-    <div class="nav-share" onclick="sharePage()">📤 分享</div>
+    <div class="nav-dot" data-slide="6"></div>
+    <div class="nav-share" onclick="sharePage()">分享</div>
 </div>
 
 <script>
@@ -440,20 +505,16 @@
     'use strict';
 
     var currentSlide = 0;
-    var totalSlides = 6;
+    var totalSlides = 7;
     var touchStartY = 0;
     var touchStartTime = 0;
     var isAnimating = false;
     var slideAnimated = {};
 
-    // ==================== PARTICLE SYSTEM ====================
+    // ========== PARTICLES (subtle, warm) ==========
     var canvas = document.getElementById('particleCanvas');
     var ctx = canvas.getContext('2d');
     var particles = [];
-    var heartShape = [ // simple heart path points
-        [0,-1],[0.2,-0.8],[0.4,-0.6],[0.5,-0.3],[0.5,0],[0.4,0.3],[0.2,0.6],[0,1],
-        [-0.2,0.6],[-0.4,0.3],[-0.5,0],[-0.5,-0.3],[-0.4,-0.6],[-0.2,-0.8]
-    ];
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -462,33 +523,32 @@
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    function Particle() {
-        this.reset();
-    }
+    function Particle() { this.reset(); }
     Particle.prototype.reset = function() {
         this.x = Math.random() * canvas.width;
-        this.y = -20 - Math.random() * 100;
-        this.size = 4 + Math.random() * 12;
-        this.speedY = 0.3 + Math.random() * 1;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.opacity = 0.2 + Math.random() * 0.5;
+        this.y = -10 - Math.random() * 80;
+        this.size = 3 + Math.random() * 8;
+        this.speedY = 0.2 + Math.random() * 0.6;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.opacity = 0.08 + Math.random() * 0.15;
         this.rotation = Math.random() * Math.PI * 2;
-        this.rotSpeed = (Math.random() - 0.5) * 0.02;
-        this.hue = 340 + Math.random() * 30; // pink range
+        this.rotSpeed = (Math.random() - 0.5) * 0.01;
+        // warm tones: rose, gold, lavender
+        var colors = ['201,123,132','212,165,116','184,169,201'];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
     };
     Particle.prototype.update = function() {
         this.y += this.speedY;
-        this.x += this.speedX + Math.sin(this.y * 0.01) * 0.3;
+        this.x += this.speedX + Math.sin(this.y * 0.008) * 0.2;
         this.rotation += this.rotSpeed;
-        if (this.y > canvas.height + 20) this.reset();
+        if (this.y > canvas.height + 10) this.reset();
     };
     Particle.prototype.draw = function() {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
         ctx.globalAlpha = this.opacity;
-        ctx.fillStyle = 'hsl(' + this.hue + ', 80%, 65%)';
-        // Draw heart shape
+        ctx.fillStyle = 'rgb(' + this.color + ')';
         var s = this.size;
         ctx.beginPath();
         ctx.moveTo(0, -s * 0.3);
@@ -498,8 +558,7 @@
         ctx.restore();
     };
 
-    // Init particles
-    for (var i = 0; i < 25; i++) {
+    for (var i = 0; i < 18; i++) {
         var p = new Particle();
         p.y = Math.random() * canvas.height;
         particles.push(p);
@@ -515,27 +574,26 @@
     }
     animateParticles();
 
-    // ==================== TOUCH BURST EFFECT ====================
-    var heartEmojis = ['❤️','💕','💗','💖','💝','💘','💓'];
+    // ========== TOUCH BURST ==========
+    var emojis = ['✨','🌸','💫','🌙','💕'];
     function createBurstAt(x, y) {
-        for (var i = 0; i < 6; i++) {
+        for (var i = 0; i < 4; i++) {
             var el = document.createElement('div');
             el.className = 'touch-heart';
-            el.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-            el.style.left = (x - 12 + (Math.random()-0.5)*60) + 'px';
-            el.style.top = (y - 12 + (Math.random()-0.5)*40) + 'px';
-            el.style.animationDelay = (i * 0.08) + 's';
+            el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            el.style.left = (x - 10 + (Math.random()-0.5)*40) + 'px';
+            el.style.top = (y - 10 + (Math.random()-0.5)*30) + 'px';
+            el.style.animationDelay = (i * 0.1) + 's';
             document.body.appendChild(el);
-            setTimeout(function(e){ e.remove(); }.bind(null,el), 1400);
+            setTimeout(function(e){ e.remove(); }.bind(null,el), 1500);
         }
     }
-
     document.addEventListener('touchstart', function(e) {
         var t = e.touches[0];
         createBurstAt(t.clientX, t.clientY);
     }, {passive: true});
 
-    // ==================== SLIDE NAVIGATION ====================
+    // ========== SLIDE NAV ==========
     var slides = document.querySelectorAll('.slide');
     var dots = document.querySelectorAll('.nav-dot');
     var counter = document.getElementById('pageCounter');
@@ -543,64 +601,41 @@
     function goToSlide(idx) {
         if (idx < 0 || idx >= totalSlides || isAnimating) return;
         isAnimating = true;
-        var dir = idx > currentSlide ? 1 : -1;
-
-        // Update classes
         for (var i = 0; i < totalSlides; i++) {
             slides[i].className = 'slide';
             if (i < idx) slides[i].classList.add('above');
             else if (i > idx) slides[i].classList.add('below');
             else slides[i].classList.add('active');
         }
-
-        // Update dots
-        dots.forEach(function(d, i){
-            d.classList.toggle('active', i === idx);
-        });
-
+        dots.forEach(function(d, i){ d.classList.toggle('active', i === idx); });
         counter.textContent = (idx + 1) + ' / ' + totalSlides;
         currentSlide = idx;
         triggerAnimations(idx);
-
-        setTimeout(function(){ isAnimating = false; }, 750);
+        setTimeout(function(){ isAnimating = false; }, 850);
     }
 
-    // Touch swipe
     document.addEventListener('touchstart', function(e) {
         touchStartY = e.touches[0].clientY;
         touchStartTime = Date.now();
     }, {passive: true});
-
     document.addEventListener('touchend', function(e) {
         var dy = touchStartY - e.changedTouches[0].clientY;
         var dt = Date.now() - touchStartTime;
-        if (Math.abs(dy) > 50 && dt < 500) {
-            goToSlide(currentSlide + (dy > 0 ? 1 : -1));
-        }
+        if (Math.abs(dy) > 50 && dt < 500) goToSlide(currentSlide + (dy > 0 ? 1 : -1));
     }, {passive: true});
-
-    // Mouse wheel (desktop)
     document.addEventListener('wheel', function(e) {
         e.preventDefault();
-        if (Math.abs(e.deltaY) > 30) {
-            goToSlide(currentSlide + (e.deltaY > 0 ? 1 : -1));
-        }
+        if (Math.abs(e.deltaY) > 30) goToSlide(currentSlide + (e.deltaY > 0 ? 1 : -1));
     }, {passive: false});
-
-    // Keyboard
     document.addEventListener('keydown', function(e) {
         if (e.key === 'ArrowDown' || e.key === ' ') goToSlide(currentSlide + 1);
         if (e.key === 'ArrowUp') goToSlide(currentSlide - 1);
     });
-
-    // Nav dots click
     dots.forEach(function(dot) {
-        dot.addEventListener('click', function() {
-            goToSlide(parseInt(this.dataset.slide));
-        });
+        dot.addEventListener('click', function() { goToSlide(parseInt(this.dataset.slide)); });
     });
 
-    // ==================== TYPEWRITER ====================
+    // ========== TYPEWRITER ==========
     function typeWriter(el, text, speed) {
         var i = 0;
         el.textContent = '';
@@ -608,81 +643,63 @@
             if (i < text.length) {
                 el.textContent += text.charAt(i);
                 i++;
-                setTimeout(tick, text.charAt(i-1) === '\n' ? speed * 3 : speed);
+                setTimeout(tick, text.charAt(i-1) === '\n' ? speed * 4 : speed);
             }
         }
         tick();
     }
 
-    // ==================== SLIDE ANIMATIONS ====================
+    // ========== ANIMATIONS PER SLIDE ==========
     function triggerAnimations(idx) {
         if (slideAnimated[idx]) return;
 
         if (idx === 0) {
-            typeWriter(document.getElementById('heroTitle'), '我喜欢你', 150);
-            setTimeout(function(){
-                typeWriter(document.getElementById('heroSub'), '张婷婷', 120);
-            }, 1200);
-        }
-
-        if (idx === 2) {
-            var items = document.querySelectorAll('#slide-2 .tl-item');
-            items.forEach(function(item, i){
-                setTimeout(function(){ item.classList.add('visible'); }, i * 300);
-            });
+            typeWriter(document.getElementById('openTitle'), '世间所有的相遇\n都是久别重逢', 100);
         }
 
         if (idx === 4) {
-            var items = document.querySelectorAll('#slide-4 .promise-item');
+            var items = document.querySelectorAll('#slide-4 .reason-item');
             items.forEach(function(item, i){
-                setTimeout(function(){ item.classList.add('visible'); }, i * 250);
+                setTimeout(function(){ item.classList.add('visible'); }, i * 200);
             });
         }
 
         if (idx === 5) {
-            var el = document.getElementById('confessionText');
-            var text = '张婷婷，\n\n去年9月我回国，不是因为谁，\n但命运已经为我安排好了最好的相遇。\n\n今年1月，我们在网上认识了。\n一开始只是简单聊天，\n谁也没想到后来的故事会这么精彩。\n\n4月你去了我的老家南昌，\n我随口提了一句小时候住的豫章路，\n你记在心里，真的去了。\n就是那一刻，我知道你不一样。\n\n5月8号，你从郑州飞来上海找我，\n我们决定在一起。\n20天不到，来回见了3次。\n你来上海，我去郑州。\n\n我觉得真的是有很大的缘分，\n我们才会在一起。\n\n我希望以后一直和你好下去，\n不管在上海还是在郑州，\n只要有你在，哪里都是家。\n\n张婷婷，我喜欢你 💕';
-            typeWriter(el, text, 40);
+            var items = document.querySelectorAll('#slide-5 .promise-item');
+            items.forEach(function(item, i){
+                setTimeout(function(){ item.classList.add('visible'); }, i * 180);
+            });
+        }
+
+        if (idx === 6) {
+            var el = document.getElementById('letterText');
+            var text = '婷婷，\n\n去年九月回国的时候，\n我不知道命运已经为我安排好了什么。\n\n一月认识你的时候，\n也没想到后来的故事会这么长。\n\n你去了豫章路。\n你飞来上海。\n你让我相信缘分。\n\n二十天，三座城市，三次相见。\n每一次见你，\n都更加确定——\n就是你了。\n\n我不知道以后会怎样，\n但我知道，\n我想一直有你。\n\n不管在上海，在郑州，还是在哪里，\n只要有你在的地方，\n就是我想去的方向。';
+            typeWriter(el, text, 45);
         }
 
         slideAnimated[idx] = true;
     }
 
-    // ==================== SHARE ====================
+    // ========== SHARE ==========
     window.sharePage = function() {
         if (navigator.share) {
             navigator.share({
-                title: '致张婷婷 - 我的爱',
-                text: '有些话，想亲口告诉你...',
+                title: '致那个让我心动的人',
+                text: '世间所有的相遇，都是久别重逢。',
                 url: window.location.href
             }).catch(function(){});
         } else {
-            // Fallback: copy URL
             var input = document.createElement('input');
             input.value = window.location.href;
             document.body.appendChild(input);
             input.select();
             document.execCommand('copy');
             input.remove();
-            showToast('链接已复制到剪贴板 📋');
+            showToast('链接已复制 📋');
         }
     };
 
-    // ==================== ACCEPT BUTTON ====================
-    window.handleAccept = function() {
-        // Burst effect
-        for (var i = 0; i < 30; i++) {
-            setTimeout(function(){
-                createBurstAt(
-                    Math.random() * window.innerWidth,
-                    Math.random() * window.innerHeight
-                );
-            }, i * 100);
-        }
-        showToast('💕 她说：我愿意！💕');
-    };
-
-    // ==================== TOAST ====================
+    // ========== TOAST ==========
     function showToast(msg) {
         var t = document.getElementById('toast');
         t.textContent = msg;
@@ -690,11 +707,9 @@
         setTimeout(function(){ t.classList.remove('show'); }, 2500);
     }
 
-    // ==================== INIT ====================
-    // Trigger hero animation on load
-    setTimeout(function(){ triggerAnimations(0); }, 500);
+    // ========== INIT ==========
+    setTimeout(function(){ triggerAnimations(0); }, 800);
 
-    // 100vh fix for iOS Safari
     function setVH() {
         var vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', vh + 'px');
