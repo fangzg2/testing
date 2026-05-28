@@ -131,7 +131,8 @@
             padding: 14px 16px; border: 1px solid rgba(255,255,255,0.05);
             margin-top: 14px; text-align: left;
         }
-        .timi-card img { width: 72px; height: 72px; border-radius: 14px; object-fit: cover; }
+        .timi-photos { display: flex; gap: 6px; flex-shrink: 0; }
+        .timi-photos img { width: 56px; height: 56px; border-radius: 12px; object-fit: cover; }
         .timi-card .timi-info { font-size: 0.85rem; line-height: 1.7; opacity: 0.7; }
 
         /* ===== REASON ===== */
@@ -356,8 +357,11 @@
                 <div class="r-item"><div class="r-dot"></div><div class="r-text">绕了半个地球，原来是为了遇见你</div></div>
             </div>
             <div class="timi-card">
-                <img src="images/timi.jpg" alt="Timi">
-                <div class="timi-info">还有 Timi 🐱<br>你家的小布偶猫<br>和你一样可爱</div>
+                <div class="timi-photos">
+                    <img src="images/timi.jpg" alt="Timi">
+                    <img src="images/timi2.jpg" alt="Timi">
+                </div>
+                <div class="timi-info">Timi 🐱<br>她家的小布偶猫<br>跟她一样可爱</div>
             </div>
         </div>
     </div>
