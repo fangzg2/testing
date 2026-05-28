@@ -147,6 +147,46 @@
             font-family: -apple-system, 'PingFang SC', sans-serif;
         }
 
+        /* ===== PHOTO CARDS ===== */
+        .photo-card {
+            position: relative; border-radius: 20px; overflow: hidden;
+            margin-bottom: 18px; min-height: 220px;
+            display: flex; align-items: flex-end;
+        }
+        .photo-card img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; filter: brightness(0.45) saturate(0.8);
+        }
+        .photo-card .photo-overlay {
+            position: relative; z-index: 2; padding: 24px 20px; width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        }
+        .photo-card .photo-label {
+            font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5; margin-bottom: 6px;
+            font-family: -apple-system, 'PingFang SC', sans-serif;
+        }
+        .photo-card .photo-text {
+            font-size: 0.9rem; line-height: 1.9; opacity: 0.85;
+        }
+        .photo-row {
+            display: flex; gap: 8px; margin-bottom: 18px;
+        }
+        .photo-row .photo-card { flex: 1; margin-bottom: 0; min-height: 180px; }
+        .timi-card {
+            display: flex; gap: 16px; align-items: center;
+            background: rgba(255,255,255,0.025); border-radius: 20px;
+            padding: 16px; border: 1px solid rgba(255,255,255,0.05);
+            margin-top: 16px;
+        }
+        .timi-card img {
+            width: 80px; height: 80px; border-radius: 16px; object-fit: cover;
+            filter: brightness(0.85);
+        }
+        .timi-card .timi-text {
+            font-size: 0.85rem; line-height: 1.8; opacity: 0.7;
+            text-align: left;
+        }
+
         /* ===== REASONS ===== */
         .reason-list { text-align: left; max-width: 420px; margin: 0 auto; }
         .reason-item {
@@ -307,27 +347,46 @@
             <div class="section-label">印 记</div>
             <h2 class="section-title">那些宁静的时刻</h2>
 
-            <div class="scene-card">
-                <div class="scene-title">世 博 公 园</div>
-                你居然能认出好多花<br>
-                我真的很惊讶<br><br>
-                我们坐在河边的台阶上<br>
-                手托着脸<br>
-                看着面前的小河<br>
-                两边的树<br>
-                远远露出一个上海中心<br><br>
-                <span class="hl-water">旁边有鸟叫<br>很宁静</span>
+            <div class="photo-card">
+                <img src="images/flower.jpg" alt="世博公园">
+                <div class="photo-overlay">
+                    <div class="photo-label">世 博 公 园</div>
+                    <div class="photo-text">
+                        你居然能认出好多花<br>
+                        我真的很惊讶<br>
+                        我们坐在河边的台阶上<br>
+                        <span class="hl-water">旁边有鸟叫，很宁静</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="scene-card">
-                <div class="scene-title">黄 浦 江 边 · 夜</div>
-                她穿着我的外套<br>
-                我们手拉手走过一大段居民区<br>
-                走到了黄浦江边<br><br>
-                找了一张长椅<br>
-                她躺下来<br>
-                头枕在我的腿上<br><br>
-                <span class="hl-water">江水哗啦啦的<br>也很宁静</span>
+            <div class="photo-row">
+                <div class="photo-card">
+                    <img src="images/park.jpg" alt="河边">
+                    <div class="photo-overlay">
+                        <div class="photo-text">小河 · 树<br><span class="hl-water">鸟声</span></div>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <img src="images/skyline.jpg" alt="上海中心">
+                    <div class="photo-overlay">
+                        <div class="photo-text">远处<br><span class="hl-water">上海中心</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <img src="images/night.jpg" alt="黄浦江">
+                <div class="photo-overlay">
+                    <div class="photo-label">黄 浦 江 边 · 夜</div>
+                    <div class="photo-text">
+                        她穿着我的外套<br>
+                        手拉手走过居民区<br>
+                        找了一张长椅，她躺下来<br>
+                        头枕在我腿上<br>
+                        <span class="hl-water">江水哗啦啦的，也很宁静</span>
+                    </div>
+                </div>
             </div>
 
             <div class="poem-card" style="text-align:center; border-color: rgba(126,168,184,0.15);">
@@ -350,6 +409,10 @@
                 <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">你有一只可爱的布偶猫，叫 Timi</div></div>
                 <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">和你在一起的时候，世界变得很宁静</div></div>
                 <div class="reason-item"><div class="reason-dot"></div><div class="reason-text">从美国到中国，绕了半个地球，原来是为了遇见你</div></div>
+            </div>
+            <div class="timi-card">
+                <img src="images/timi.jpg" alt="Timi">
+                <div class="timi-text">Timi<br>她家的小布偶猫<br>和她一样可爱</div>
             </div>
         </div>
     </div>
